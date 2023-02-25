@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/user-auth-react/static/js/main.ff0d26b1.js",
+    "static/js/787.cda612ba.chunk.js": "/user-auth-react/static/js/787.cda612ba.chunk.js",
+    "static/media/pic1.png": "/user-auth-react/static/media/pic1.422edc182ce21249c677.png",
+    "index.html": "/user-auth-react/index.html",
+    "main.ff0d26b1.js.map": "/user-auth-react/static/js/main.ff0d26b1.js.map",
+    "787.cda612ba.chunk.js.map": "/user-auth-react/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ff0d26b1.js"
+  ]
+}
