@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes,HashRouter } from "react-router-dom";
 import Dashboard from "./pages/auth/Dashboard";
 import LoginReg from "./pages/auth/LoginReg";
 import ResetPassword from "./pages/auth/ResetPassword";
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
     
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home/>}/>
@@ -27,7 +27,7 @@ function App() {
           <Route path="*" element={<h1>404 Page Not Found</h1>}/>
 
         </Routes>
-      </BrowserRouter>
+    </HashRouter>
       
     </>
   );
