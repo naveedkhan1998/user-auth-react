@@ -16,14 +16,14 @@ function App() {
     
       <BrowserRouter>
         <Routes>
-          <Route path="/user-auth-react" element={<Layout />}>
+          <Route path="/" element={<Layout />}>
             <Route index element={<Home/>}/>
-            <Route path="/user-auth-react/ontact" element={<Contact/>}/>
-            <Route path="/user-auth-react/login" element={!access_token ? <LoginReg/>:<Navigate to ='/user-auth-react/dashboard'/>}/>
-            <Route path="/user-auth-react/sendpasswordresetemail" element={<SendPasswsordResetEmail/>}/>
-            <Route path="/user-auth-react/api/user/reset/:id/:token" element={<ResetPassword/>}/>  
+            <Route path="contact" element={<Contact/>}/>
+            <Route path="login" element={!access_token ? <LoginReg/>:<Navigate to ='/dashboard'/>}/>
+            <Route path="sendpasswordresetemail" element={<SendPasswsordResetEmail/>}/>
+            <Route path="api/user/reset/:id/:token" element={<ResetPassword/>}/>  
           </Route>
-          <Route path="/user-auth-react/dashboard" element={access_token ?<Dashboard/>:<Navigate to="/login"/>}/>
+          <Route path="/dashboard" element={access_token ?<Dashboard/>:<Navigate to="/login"/>}/>
           <Route path="*" element={<h1>404 Page Not Found</h1>}/>
 
         </Routes>
