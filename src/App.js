@@ -16,7 +16,7 @@ function App() {
     
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/user-auth-react" element={<Layout />}>
             <Route index element={<Home/>}/>
             <Route path="contact" element={<Contact/>}/>
             <Route path="login" element={!access_token ? <LoginReg/>:<Navigate to ='/dashboard'/>}/>
