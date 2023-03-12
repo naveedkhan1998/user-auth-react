@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/user-auth-react/static/js/main.4972ca83.js",
+    "main.js": "/user-auth-react/static/js/main.be159b1c.js",
     "static/js/787.cda612ba.chunk.js": "/user-auth-react/static/js/787.cda612ba.chunk.js",
     "index.html": "/user-auth-react/index.html",
-    "main.4972ca83.js.map": "/user-auth-react/static/js/main.4972ca83.js.map",
+    "main.be159b1c.js.map": "/user-auth-react/static/js/main.be159b1c.js.map",
     "787.cda612ba.chunk.js.map": "/user-auth-react/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.4972ca83.js"
+    "static/js/main.be159b1c.js"
   ]
 }
