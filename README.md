@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+https://naveedkhan1998.github.io/user-auth-react/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# User-Auth
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+The website is built using React for the frontend and Python for the backend.
 
-### `npm start`
+## Live Site
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The live site can be accessed at [https://naveedkhan1998.github.io/user-auth-react/]https://naveedkhan1998.github.io/user-auth-react/). The site is hosted on a github pages.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Backend Server
 
-### `npm test`
+The backend server that powers the website is hosted separately from the live site. The server can be accessed at [https://naveedkhan98.pythonanywhere.com/](https://naveedkhan98.pythonanywhere.com/). This server is responsible for handling all the requests and responses that are sent between the frontend and backend of the website.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- React: a popular JavaScript library for building user interfaces.
+- Python: a high-level programming language used for web development.
+- Django Rest Framework: a powerful and flexible toolkit for building Web APIs.
+- MySQL: a reliable and scalable open-source relational database management system.
+- Git: a distributed version control system for tracking changes in code.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Conclusion
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+My website is a great resource for anyone looking to stay up-to-date on the latest news and trends. The site is fast, secure, and easy to use, thanks to the cutting-edge technologies used to build it. Whether you're a tech enthusiast or just looking for some entertainment news, my website has something for everyone.
