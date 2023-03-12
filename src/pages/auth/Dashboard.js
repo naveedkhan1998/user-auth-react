@@ -7,6 +7,10 @@ import ChangePassword from './ChangePassword'
 import { useGetLoggedUserQuery } from '../../services/UserAuthApi'
 import { useEffect, useState } from 'react'
 import { setUserInfo, unSetUserInfo } from '../../features/userSlice'
+import { Container } from '@mui/system'
+import { useGetStudentQuery } from '../../services/ManagmentApi'
+
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
 
 const Dashboard = () => {
 
@@ -45,10 +49,11 @@ const Dashboard = () => {
             }))
         }
     },[data,isSuccess,dispatch])
-
+    
     
   return <>
     <CssBaseline>
+        <Container>
         <Grid container>
             <Grid item sm={4} sx={{backgroundColor:'gray',p:5,color:'white'}}>
                 <h1>DashBoard</h1>
@@ -60,6 +65,10 @@ const Dashboard = () => {
                 <ChangePassword/>
             </Grid>
         </Grid>
+        <Grid2 container>
+            <h1>Students</h1>
+        </Grid2>
+        </Container>
     </CssBaseline>
   </>
 }
