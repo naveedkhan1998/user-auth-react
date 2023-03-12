@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const managmentApi = createApi({
   reducerPath: 'managmentApi',
-  // baseQuery: fetchBaseQuery({ baseUrl: 'https://naveedkhan98.pythonanywhere.com/managment/' }),
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/managment/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://naveedkhan98.pythonanywhere.com/managment/' }),
+  //baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/managment/' }),
   endpoints: (builder) => ({
     getStudent:builder.query({
         query:(access_token) => {
