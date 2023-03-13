@@ -18,14 +18,27 @@ export const managmentApi = createApi({
         }
     }),
     addStudent:builder.mutation({
-        query:(actualData,access_token) => {
+        query:({actualData,access_token}) => {
             return{
                 url:'update_students/',
                 method:'POST',
                 body:actualData,
                 headers:{
-                    'Content-type':'application/json',
                     'Authorization':`Bearer ${access_token}`,
+                    'Content-type':'application/json',
+                }
+            }
+        }
+    }),
+    deleteStudent:builder.mutation({
+        query:({id,access_token}) => {
+            return{
+                url:'update_students/',
+                method:'DELETE',
+                body:{id:id},
+                headers:{
+                    'Authorization':`Bearer ${access_token}`,
+                    'Content-type':'application/json',
                 }
             }
         }
@@ -33,4 +46,4 @@ export const managmentApi = createApi({
 
   }),
 })
-export const { useGetStudentQuery,useAddStudentMutation } = managmentApi
+export const { useGetStudentQuery,useAddStudentMutation,useDeleteStudentMutation } = managmentApi
