@@ -12,15 +12,16 @@ export const studentSlice = createSlice({
     setStudents:(state,action) =>{
         state.students = action.payload.students
     },
-    addStudent:(state,payload) =>{
-        state.push(payload)
+    addStudentStore:(state,action) =>{
+        state.students.push(action.payload)
     },
-    deleteStudent:(state) =>{
-        state = initialState
+    deleteStudentStore:(state,action) =>{
+        const idx = state.students.findIndex(item => item.id === action.payload.id)
+        state.students.splice(idx,1)
     },
   },
 })
 
-export const { setStudents,addStudent,deleteStudent } = studentSlice.actions
+export const { setStudents,addStudentStore,deleteStudentStore } = studentSlice.actions
 
 export default studentSlice.reducer

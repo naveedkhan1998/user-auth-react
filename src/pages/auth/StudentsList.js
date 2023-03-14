@@ -25,7 +25,7 @@ import {
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { setStudents,addStudent,deleteStudent } from '../../features/studentSlice'
+import { setStudents,addStudentStore,deleteStudentStore } from '../../features/studentSlice'
 
 const StudentsList = () => {
   const dispatch = useDispatch()
@@ -52,7 +52,8 @@ const StudentsList = () => {
 
   const handleDeleteStudent = async (id) => {
     await deleteStudent({ id,access_token })
-    window.location.reload()
+    dispatch(deleteStudentStore({id}))
+    //window.location.reload()
   }
 
   const handleAddStudent = async () => {
@@ -63,7 +64,9 @@ const StudentsList = () => {
     }
     await addStudent({ actualData,access_token })
     handleClose()
-    window.location.reload()
+    dispatch(addStudentStore({actualData}))
+
+    //window.location.reload()
     // Call API to get student data
     
   }
@@ -86,7 +89,10 @@ const StudentsList = () => {
       // Handle error here
     }
   }, [isSuccess, data, isError])
-  //const {storeStudents} = useSelector(state => state.students)
+  const storeStudents = useSelector((state) => state.students.students)
+
+  console.log(storeStudents)
+
   return <>
     <Container>
       <CssBaseline />
@@ -105,7 +111,7 @@ const StudentsList = () => {
           {isLoading ? (
             <CircularProgress />
           ) : (
-            data?.students?.map((item) => (
+            storeStudents?.map((item) => (
               <Grid item key={item.id} xs={12} sm={6} md={4}>
                 <Box borderRadius={9} sx={{ border: '1px solid grey', p: 2 }}>
                   <Typography variant="h6">Name:{item.name}</Typography>

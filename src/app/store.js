@@ -13,7 +13,7 @@ export const store = configureStore({
     [managmentApi.reducerPath]: managmentApi.reducer,
     auth:authReducer,
     user:userReducer,
-    student:studentReducer,
+    students:studentReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
