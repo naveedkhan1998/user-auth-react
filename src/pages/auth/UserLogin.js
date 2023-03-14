@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink,useNavigate } from 'react-router-dom'
 import { setUserToken } from '../../features/authSlice'
+import { userSlice } from '../../features/userSlice'
 import { getToken, storeToken } from '../../services/LocalStorageService'
 import { useLoginUserMutation } from '../../services/UserAuthApi'
 
@@ -32,8 +33,10 @@ const UserLogin = () => {
             //console.log(res.data)
             storeToken(res.data.token)
             let {access_token} = getToken()
-            dispatch(setUserToken({access_token:access_token}))
             navigate('/dashboard')
+            dispatch(userSlice({email:res.data.email,name:res.data.name}))
+            dispatch(setUserToken({access_token:access_token}))
+            
         }
        
     }

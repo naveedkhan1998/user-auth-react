@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
   useGetStudentQuery,
@@ -25,6 +25,7 @@ import {
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { setStudents,addStudent,deleteStudent } from '../../features/studentSlice'
 
 const StudentsList = () => {
   const dispatch = useDispatch()
@@ -47,9 +48,11 @@ const StudentsList = () => {
   const [standard, setStandard] = useState('')
   const [section, setSection] = useState('')
   const [open, setOpen] = useState(false)
+  const [refresh,setRefresh] = useState(false)
 
   const handleDeleteStudent = async (id) => {
     await deleteStudent({ id,access_token })
+    window.location.reload()
   }
 
   const handleAddStudent = async () => {
@@ -60,6 +63,7 @@ const StudentsList = () => {
     }
     await addStudent({ actualData,access_token })
     handleClose()
+    window.location.reload()
     // Call API to get student data
     
   }
@@ -74,13 +78,15 @@ const StudentsList = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      console.log(data)
+      //console.log(data)
+      dispatch(setStudents({students:data?.students}))
+      
     }
     if (isError) {
       // Handle error here
     }
   }, [isSuccess, data, isError])
-
+  //const {storeStudents} = useSelector(state => state.students)
   return <>
     <Container>
       <CssBaseline />

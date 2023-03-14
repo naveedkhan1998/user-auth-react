@@ -6,29 +6,21 @@ const initialState = {
 }
 
 export const studentSlice = createSlice({
-  name: 'student_info',
+  name: 'students',
   initialState,
   reducers: {
-    setStudentInfo:(state,action) =>{
-        const {id,name} = action.payload
-        return {
-          ...state,
-          data:[
-            ...state.students,
-            {
-              id:id,
-              name:name
-            }
-          ]
-        }
-        state.name = action.payload.name
+    setStudents:(state,action) =>{
+        state.students = action.payload.students
     },
-    unSeStudentInfo:(state,action) =>{
-        state.name = action.payload.name
+    addStudent:(state,payload) =>{
+        state.push(payload)
+    },
+    deleteStudent:(state) =>{
+        state = initialState
     },
   },
 })
 
-export const { setStudentInfo,unSeStudentInfo } = studentSlice.actions
+export const { setStudents,addStudent,deleteStudent } = studentSlice.actions
 
 export default studentSlice.reducer

@@ -15,7 +15,7 @@ export const managmentApi = createApi({
                     'Authorization':`Bearer ${access_token}`,
                 }
             }
-        }
+        },
     }),
     addStudent:builder.mutation({
         query:({actualData,access_token}) => {

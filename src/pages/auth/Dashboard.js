@@ -65,13 +65,16 @@ const Dashboard = () => {
                 <Typography variant='h5'>Email: {userData.email}</Typography>
                 <Typography variant='h6'>Name: {userData.name}</Typography>
                 <Button variant='contained' color='warning' size='large' onClick={handleLogout} sx={{mt:8}}> Logout</Button>
+                
             </Grid>
+            
             <Grid item sm={8} borderRadius={9}>
                 <ChangePassword/>
             </Grid>
         </Grid>
         <Grid container borderRadius={9} sx={{backgroundColor:'#f08354',p:5,color:'white'}}>
             <Typography variant='h2'>Students</Typography>
+            
         </Grid>
         <Grid container>
             <StudentsList/>
