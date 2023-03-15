@@ -1,25 +1,23 @@
 import { Button,CssBaseline,Grid,Typography } from '@mui/material'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { unSetUserToken } from '../../features/authSlice'
+import { logOut } from '../../features/authSlice'
 import { getToken, removeToken } from '../../services/LocalStorageService'
 import ChangePassword from './ChangePassword'
 import { useGetLoggedUserQuery } from '../../services/UserAuthApi'
 import { useEffect, useState } from 'react'
 import { setUserInfo, unSetUserInfo } from '../../features/userSlice'
 import { Container } from '@mui/system'
-import { useGetStudentQuery } from '../../services/ManagmentApi'
 import StudentsList from './StudentsList'
-
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2'
+import { getCurrentToken } from '../../features/authSlice'
 
 
 const Dashboard = () => {
 
     const handleLogout = () => {
         //console.log("logout clicked")
-        dispatch(unSetUserInfo({name:"",email:""}))
-        dispatch(unSetUserToken({access_token:null}))
+        dispatch(unSetUserInfo())
+        dispatch(logOut())
         removeToken()
         navigate('/login')
     }
@@ -27,6 +25,7 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {access_token} = getToken()
+    //const access_token = useSelector(getCurrentToken)
     
     const {data,isSuccess} = useGetLoggedUserQuery(access_token)
     //const {data,isSuccess} = useGetStudentQuery(access_token)

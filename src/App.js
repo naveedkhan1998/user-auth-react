@@ -6,11 +6,14 @@ import SendPasswsordResetEmail from "./pages/auth/SendPasswordResetEmail";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
+import { getToken } from "./services/LocalStorageService";
 import {useSelector} from 'react-redux'
+import { getCurrentToken } from "./features/authSlice";
 
 //
 function App() {
-  const{access_token} = useSelector(state => state.auth)
+  //const access_token = useSelector(getCurrentToken)
+  const {access_token} = getToken()
   return (
     <>
     

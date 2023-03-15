@@ -13,7 +13,7 @@ export const studentSlice = createSlice({
         state.students = action.payload.students
     },
     addStudentStore:(state,action) =>{
-        state.students.push(action.payload)
+        state.students.push(action.payload.actualData)
     },
     deleteStudentStore:(state,action) =>{
         const idx = state.students.findIndex(item => item.id === action.payload.id)

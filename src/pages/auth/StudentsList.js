@@ -26,6 +26,7 @@ import {
 import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { setStudents,addStudentStore,deleteStudentStore } from '../../features/studentSlice'
+import { getCurrentToken } from '../../features/authSlice'
 
 const StudentsList = () => {
   const dispatch = useDispatch()
@@ -33,6 +34,7 @@ const StudentsList = () => {
 
   // Retrieve access token from local storage
   const { access_token } = getToken()
+  //const  access_token  = useSelector(getCurrentToken)
 
   // Call API to get student data
   const { data, isSuccess, isLoading, isError, error } = useGetStudentQuery(access_token)
@@ -63,8 +65,8 @@ const StudentsList = () => {
         section:section
     }
     await addStudent({ actualData,access_token })
-    handleClose()
     dispatch(addStudentStore({actualData}))
+    handleClose()
 
     //window.location.reload()
     // Call API to get student data
@@ -77,6 +79,9 @@ const StudentsList = () => {
 
   const handleClose = () => {
     setOpen(false)
+    setName('')
+    setStandard('')
+    setSection('')
   }
 
   useEffect(() => {

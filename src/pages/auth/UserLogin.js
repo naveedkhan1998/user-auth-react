@@ -1,11 +1,12 @@
 import { TextField,Button,Box,Alert,Typography, CircularProgress } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { NavLink,useNavigate } from 'react-router-dom'
-import { setUserToken } from '../../features/authSlice'
+import { setCredentials,logOut } from '../../features/authSlice'
 import { userSlice } from '../../features/userSlice'
 import { getToken, storeToken } from '../../services/LocalStorageService'
 import { useLoginUserMutation } from '../../services/UserAuthApi'
+import { getCurrentToken } from '../../features/authSlice'
 
 const UserLogin = () => {
 
@@ -32,18 +33,18 @@ const UserLogin = () => {
         if (res.data){
             //console.log(res.data)
             storeToken(res.data.token)
-            let {access_token} = getToken()
+            //let {access_token} = getToken()
+            //dispatch(userSlice({email:actualData.email}))
+            dispatch(setCredentials({...res.data.token}))
             navigate('/dashboard')
-            dispatch(userSlice({email:res.data.email,name:res.data.name}))
-            dispatch(setUserToken({access_token:access_token}))
             
         }
        
     }
     let {access_token} = getToken()
     useEffect(()=>{
-        dispatch(setUserToken({access_token:access_token}))
-    },[access_token,dispatch])
+        dispatch(setCredentials({access_token}))
+    },[access_token])
 
   return <>
     <Box component='form' noValidate sx={{mt:1}} id="login-form" onSubmit={handleSubmit}>

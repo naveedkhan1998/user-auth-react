@@ -42,11 +42,11 @@ const ChangePassword = () => {
             <h1>Change Password</h1>
             <Box component='form' noValidate sx={{mt:1}} id="password-change-form" onSubmit={handleSubmit}>
                 <TextField margin='normal' required fullWidth id='password' name='password'
-                label='New Password' type='password' />
+                label='New Password' type='password' autoComplete='new-password'/>
                 {server_error.password?<Typography style = {{fontSize:12,
             color:'red',paddingLeft:'10'}}>{server_error.password[0]}</Typography>:''}
                 <TextField margin='normal' required fullWidth id='password2' name='password2'
-                label='Confirm New Password' type='password' />
+                label='Confirm New Password' type='password' autoComplete='new-password'/>
                 {server_error.password2?<Typography style = {{fontSize:12,
             color:'red',paddingLeft:'10'}}>{server_error.password2[0]}</Typography>:''}
                 <Box textAlign='center'>
