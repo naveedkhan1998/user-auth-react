@@ -27,6 +27,8 @@ import AddIcon from '@mui/icons-material/Add'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { setStudents,addStudentStore,deleteStudentStore } from '../../features/studentSlice'
 import { getCurrentToken } from '../../features/authSlice'
+import { getCurrentStudentsList } from '../../features/studentSlice'
+
 
 const StudentsList = () => {
   const dispatch = useDispatch()
@@ -94,7 +96,8 @@ const StudentsList = () => {
       // Handle error here
     }
   }, [isSuccess, data, isError])
-  const storeStudents = useSelector((state) => state.students.students)
+  //const storeStudents = useSelector((state) => state.students)
+  const storeStudents = useSelector(getCurrentStudentsList)
 
   console.log(storeStudents)
 

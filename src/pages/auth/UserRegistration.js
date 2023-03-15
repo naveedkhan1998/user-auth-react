@@ -1,18 +1,14 @@
 import { TextField,FormControlLabel,Checkbox,Button,Box,Alert, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { useDispatch,useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { storeToken } from '../../services/LocalStorageService'
 import { useRegisterUserMutation } from '../../services/UserAuthApi'
-
+import { setCredentials,logOut } from '../../features/authSlice'
 
 const UserRegistration = () => {
     
-    /* const [error,setError] = useState({
-    status:false,
-    msg:'',
-        type:'',
-    }) */
-
+    const dispatch = useDispatch()
     const [server_error,setServerError] = useState({})
 
     const navigate = useNavigate();
@@ -39,6 +35,7 @@ const UserRegistration = () => {
         if (res.data){
             console.log(res.data)
             storeToken(res.data.token)
+            dispatch(setCredentials({...res.data.token}))
             navigate('/dashboard')
         }
        

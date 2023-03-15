@@ -12,8 +12,8 @@ import { getCurrentToken } from "./features/authSlice";
 
 //
 function App() {
-  //const access_token = useSelector(getCurrentToken)
-  const {access_token} = getToken()
+  const access_token = useSelector(getCurrentToken)
+  //const {access_token} = getToken()
   return (
     <>
     

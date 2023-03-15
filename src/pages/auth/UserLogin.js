@@ -31,20 +31,19 @@ const UserLogin = () => {
             setServerError(res.error.data) 
         }
         if (res.data){
-            //console.log(res.data)
+            console.log(res.data)
             storeToken(res.data.token)
             //let {access_token} = getToken()
-            //dispatch(userSlice({email:actualData.email}))
             dispatch(setCredentials({...res.data.token}))
             navigate('/dashboard')
             
         }
        
     }
-    let {access_token} = getToken()
+    /* let {access_token} = getToken()
     useEffect(()=>{
-        dispatch(setCredentials({access_token}))
-    },[access_token])
+        dispatch(setCredentials({access:access_token.access,refresh:access_token.refresh}))
+    },[access_token,dispatch]) */
 
   return <>
     <Box component='form' noValidate sx={{mt:1}} id="login-form" onSubmit={handleSubmit}>

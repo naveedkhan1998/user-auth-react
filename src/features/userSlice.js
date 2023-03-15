@@ -25,5 +25,5 @@ export const { setUserInfo,unSetUserInfo } = userSlice.actions
 
 export default userSlice.reducer
 
-const getCurrentUserName = (state) => state.user.name
-const getCurrentUserEmail = (state) => state.user.email
+export const getCurrentUserName = (state) => state.user.name
+export const getCurrentUserEmail = (state) => state.user.email

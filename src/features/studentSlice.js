@@ -25,3 +25,5 @@ export const studentSlice = createSlice({
 export const { setStudents,addStudentStore,deleteStudentStore } = studentSlice.actions
 
 export default studentSlice.reducer
+
+export const getCurrentStudentsList = (state) => state.students.students
