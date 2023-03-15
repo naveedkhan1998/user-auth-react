@@ -66,8 +66,10 @@ const StudentsList = () => {
         standard:standard,
         section:section
     }
-    await addStudent({ actualData,access_token })
-    dispatch(addStudentStore({actualData}))
+    let res = await addStudent({ actualData,access_token })
+    if (res.data){
+    dispatch(addStudentStore({...res.data.new_object}))
+    }
     handleClose()
 
     //window.location.reload()
