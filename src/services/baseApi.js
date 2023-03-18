@@ -47,6 +47,7 @@ const baseQueryWithReauth = async (args,api,extraOptions) =>{
             },api,extraOptions)
         } else {
             api.dispatch(logOut())
+            removeToken()
             
         }
     }
