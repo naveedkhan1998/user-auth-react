@@ -7,6 +7,7 @@ import { userSlice } from '../../features/userSlice'
 import { getToken, storeToken } from '../../services/LocalStorageService'
 import { useLoginUserMutation } from '../../services/UserAuthApi'
 import { getCurrentToken } from '../../features/authSlice'
+import { toast } from 'react-toastify';
 
 const UserLogin = () => {
 
@@ -34,16 +35,17 @@ const UserLogin = () => {
             console.log(res.data)
             storeToken(res.data.token)
             //let {access_token} = getToken()
+            toast("Logged In")
             dispatch(setCredentials({...res.data.token}))
             navigate('/dashboard')
             
         }
        
     }
-    /* let {access_token} = getToken()
+    let {access_token,refresh_token} = getToken()
     useEffect(()=>{
-        dispatch(setCredentials({access:access_token.access,refresh:access_token.refresh}))
-    },[access_token,dispatch]) */
+        dispatch(setCredentials({access:access_token,refresh:refresh_token}))
+    },[access_token,dispatch])
 
   return <>
     <Box component='form' noValidate sx={{mt:1}} id="login-form" onSubmit={handleSubmit}>

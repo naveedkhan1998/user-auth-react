@@ -28,7 +28,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import { setStudents,addStudentStore,deleteStudentStore } from '../../features/studentSlice'
 import { getCurrentToken } from '../../features/authSlice'
 import { getCurrentStudentsList } from '../../features/studentSlice'
-
+import { toast } from 'react-toastify';
 
 const StudentsList = () => {
   const dispatch = useDispatch()
@@ -57,6 +57,7 @@ const StudentsList = () => {
   const handleDeleteStudent = async (id) => {
     await deleteStudent({ id,access_token })
     dispatch(deleteStudentStore({id}))
+    toast('Student Deleted')
     //window.location.reload()
   }
 
@@ -70,6 +71,7 @@ const StudentsList = () => {
     if (res.data){
     dispatch(addStudentStore({...res.data.new_object}))
     }
+    toast('Student Added')
     handleClose()
 
     //window.location.reload()

@@ -8,8 +8,8 @@ const Contact = () => {
   };
 
   return (
-    <Grid container justifyContent="center" spacing={3}>
-      <Grid item xs={12} md={6}>
+    <Grid container justifyContent="center" spacing={3} sx={{ py: 8, mx: 'auto'}}>
+      <Grid item xs={12} md={7}>
         <ContactForm onSubmit={handleSubmit}>
           <h1>Contact Us</h1>
           <p>Have a question or comment? Send us a message and we'll get back to you as soon as possible.</p>
@@ -21,7 +21,7 @@ const Contact = () => {
           </Button>
         </ContactForm>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={7}>
         <ContactInfo>
           <h2>Get In Touch</h2>
           <p>

@@ -69,10 +69,22 @@ export const userAuthApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        sendOTP:builder.mutation({
+            query:(emailData) => {
+                return{
+                    url:`/api/user/send_otp/`,
+                    method:'POST',
+                    body:emailData,
+                    headers:{
+                        'Content-type':'application/json',
+                    }
+                }
+            }
+        }),
     })
 })
 
 
 export const { useRegisterUserMutation, useLoginUserMutation, useGetLoggedUserQuery, 
     useChangeUserPasswordMutation, useSendPasswordResetEmailMutation,
-    useResetPasswordMutation } = userAuthApi 
+    useResetPasswordMutation,useSendOTPMutation } = userAuthApi 

@@ -10,12 +10,13 @@ import { setUserInfo, unSetUserInfo } from '../../features/userSlice'
 import { Container } from '@mui/system'
 import StudentsList from './StudentsList'
 import { getCurrentToken } from '../../features/authSlice'
-
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
 
     const handleLogout = () => {
         //console.log("logout clicked")
+        toast("Logged Out")
         dispatch(unSetUserInfo())
         dispatch(logOut())
         removeToken()
