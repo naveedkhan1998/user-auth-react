@@ -4,8 +4,8 @@ import { getToken,storeToken,removeToken } from './LocalStorageService'
 import { getCurrentRefreshToken } from '../features/authSlice'
 
 const baseQuery = fetchBaseQuery({
-    //baseUrl: 'https://naveedkhan98.pythonanywhere.com',
-    baseUrl: 'http://localhost:8000',
+    baseUrl: 'https://naveedkhan98.pythonanywhere.com',
+    //baseUrl: 'http://localhost:8000',
     //credentials:'include',
     prepareHeaders:(headers,{getState})=>{
         const token = getState().auth.token
