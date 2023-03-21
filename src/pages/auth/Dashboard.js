@@ -57,7 +57,7 @@ const Dashboard = () => {
             dispatch(setUserInfo({
                 email:data.email,
                 name:data.name,
-                is_staff:data.is_staff,
+                is_teacher:data.is_teacher,
                 avatar:data.avatar,
             }))
         }
@@ -67,7 +67,7 @@ const Dashboard = () => {
 
   return <>
     <CssBaseline >
-        {userData.is_staff?
+        {userData.is_teacher?
         <Container sx={{ backgroundColor: '#f5deb3', py: 12, px: 4 }}>
             <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }}>
                 <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
