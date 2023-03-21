@@ -22,7 +22,7 @@ function Home() {
 
   return <>
     <Container maxWidth="lg">
-      <Grid container justifyContent="flex-end" sx={{ py: 8, mx: 'auto', maxWidth: 1600 }}>
+      <Grid container justifyContent="flex-end" sx={{ py: 8, mx: 'auto' }}>
         <Grid item xs={12} md={6}>
           <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 4, mt: 4 }}>
             Welcome to Our Website
@@ -48,7 +48,7 @@ function Home() {
                 key={index}
                 src={imageUrl}
                 alt={`Carousel Image ${index}`}
-                sx={{ maxWidth: '50%', maxHeight: '50%', objectFit: 'contain' }}
+                sx={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
               />
             ))}
           </Carousel>

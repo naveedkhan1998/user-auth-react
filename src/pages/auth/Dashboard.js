@@ -1,4 +1,4 @@
-import { Button,CssBaseline,Grid,Typography } from '@mui/material'
+import { Box, Button,CssBaseline,Grid,Typography,Paper } from '@mui/material'
 import { useDispatch,useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../features/authSlice'
@@ -6,11 +6,12 @@ import { getToken, removeToken } from '../../services/LocalStorageService'
 import ChangePassword from './ChangePassword'
 import { useGetLoggedUserQuery } from '../../services/UserAuthApi'
 import { useEffect, useState } from 'react'
-import { setUserInfo, unSetUserInfo } from '../../features/userSlice'
+import { setUserInfo, unSetUserInfo,getCurrentUserDetails } from '../../features/userSlice'
 import { Container } from '@mui/system'
 import StudentsList from './StudentsList'
 import { getCurrentToken } from '../../features/authSlice'
 import { toast } from 'react-toastify';
+import {Avatar} from '@mui/material'
 
 const Dashboard = () => {
 
@@ -33,9 +34,11 @@ const Dashboard = () => {
     
     
 
-    const [userData,setUserData] = useState({
-        email:"",
-        name:""
+    /* const [userData,setUserData] = useState({
+        email:'',
+        name:'',
+        is_staff:false,
+        avatar:''
     })
 
     useEffect(() =>{
@@ -43,44 +46,106 @@ const Dashboard = () => {
         setUserData({
             email:data.email,
             name:data.name,
+            is_staff:data.is_staff,
+            avatar:data.avatar,
         })
     }
-    },[data,isSuccess])
+    },[data,isSuccess]) */
 
     useEffect(()=>{
         if (data && isSuccess){
             dispatch(setUserInfo({
                 email:data.email,
                 name:data.name,
+                is_staff:data.is_staff,
+                avatar:data.avatar,
             }))
         }
     },[data,isSuccess,dispatch])
 
+    const userData = useSelector(getCurrentUserDetails)
+
   return <>
-    <CssBaseline>
-        <Container >
-        <Grid container >
-            <Grid item borderRadius={9} sm={4} sx={{backgroundColor:'gray',p:5,color:'white'}}>
-                <h1>DashBoard</h1>
-                <Typography variant='h5'>Email: {userData.email}</Typography>
-                <Typography variant='h6'>Name: {userData.name}</Typography>
-                <Button variant='contained' color='warning' size='large' onClick={handleLogout} sx={{mt:8}}> Logout</Button>
-                
+    <CssBaseline >
+        {userData.is_staff?
+        <Container sx={{ backgroundColor: '#f5deb3', py: 12, px: 4 }}>
+            <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }}>
+                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
+                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
+                    Teacher Dashboard
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} sm={4} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
+                    <Grid container spacing={2} alignItems="center" justifyContent="center">
+                    <Grid item>
+                        <Avatar alt="User Profile" src={userData.avatar} sx={{ width: 100, height: 100 }} />
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h5" sx={{ color: '#f5deb3' }}>
+                        Email: {userData.email}
+                        </Typography>
+                        <Typography variant="h6" sx={{ color: '#f5deb3' }}>
+                        Name: {userData.name}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" color="warning" size="large" onClick={handleLogout} sx={{ mt: 4 }}>
+                        Logout
+                        </Button>
+                    </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} sm={8} sx={{ borderRadius: 9, py: 4 }}>
+                    <ChangePassword />
+                </Grid>
+                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
+                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
+                    Students
+                    </Typography>
+                </Grid>
             </Grid>
-            
-            <Grid item sm={8} borderRadius={9}>
-                <ChangePassword/>
+      </Container>
+        :
+        <Container sx={{ backgroundColor: '#f5deb3', py: 12, px: 4 }}>
+            <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }}>
+                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
+                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
+                    Parent Dashboard
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} sm={4} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
+                    <Grid container spacing={2} alignItems="center" justifyContent="center">
+                    <Grid item>
+                        <Avatar alt="User Profile" src={userData.avatar} sx={{ width: 100, height: 100 }} />
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="h5" sx={{ color: '#f5deb3' }}>
+                        Email: {userData.email}
+                        </Typography>
+                        <Typography variant="h6" sx={{ color: '#f5deb3' }}>
+                        Name: {userData.name}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" color="warning" size="large" onClick={handleLogout} sx={{ mt: 4 }}>
+                        Logout
+                        </Button>
+                    </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} sm={8} sx={{ borderRadius: 9, py: 4 }}>
+                    <ChangePassword />
+                </Grid>
+                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
+                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
+                    Students
+                    </Typography>
+                </Grid>
             </Grid>
-        </Grid>
-        <Grid container borderRadius={9} sx={{backgroundColor:'#f08354',p:5,color:'white'}}>
-            <Typography variant='h2'>Students</Typography>
-            
-        </Grid>
-        <Grid container>
-            <StudentsList/>
-        </Grid>
+      </Container>
+            }
+
         
-        </Container>
     </CssBaseline>
   </>
 }

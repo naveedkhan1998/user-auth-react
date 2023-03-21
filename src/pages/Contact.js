@@ -9,8 +9,8 @@ const Contact = () => {
 
   return (
     <Grid container justifyContent="center" spacing={3} sx={{ py: 8, mx: 'auto'}}>
-      <Grid item xs={12} md={7}>
-        <ContactForm onSubmit={handleSubmit}>
+      <Grid item xs={12} md={7} >
+        <ContactForm onSubmit={handleSubmit} sx={{backgroundColor: '#f5deb3',color:'#654321'}}>
           <h1>Contact Us</h1>
           <p>Have a question or comment? Send us a message and we'll get back to you as soon as possible.</p>
           <TextField label="Name" fullWidth required />
@@ -22,13 +22,13 @@ const Contact = () => {
         </ContactForm>
       </Grid>
       <Grid item xs={12} md={7}>
-        <ContactInfo>
+        <ContactInfo sx={{backgroundColor: '#f5deb3',color:'#654321'}}>
           <h2>Get In Touch</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor quam nec felis gravida, a malesuada urna
             tincidunt.
           </p>
-          <p>Phone: +91 99999999</p>
+          <p>Phone: +91 8492928789</p>
           <p>Email: info@example.com</p>
           <p>Address: House No.1</p>
         </ContactInfo>

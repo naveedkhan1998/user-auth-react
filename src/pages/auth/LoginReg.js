@@ -27,11 +27,11 @@ const LoginReg = () => {
 
   return (
     <animated.div style={fade}>
-      <Grid container justifyContent='center' sx={{ py: 8, mx: 'auto', maxWidth: 1600 }}>
+      <Grid container justifyContent='center' sx={{ py: 8, mx: 'auto', maxWidth: 'auto' }}>
         <Grid item xs={12} sm={8} md={6} lg={4}>
-          <Card sx={{ borderRadius: '12px' }}>
+          <Card sx={{ borderRadius: '12px',backgroundColor: "#f5deb3"} }>
             <Box sx={{ padding: '24px' }}>
-              <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 2 }}>
+              <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 2,color: "#654321" }}>
                 Welcome back!
               </Typography>
               <Tabs
@@ -44,12 +44,12 @@ const LoginReg = () => {
                 <Tab
                   icon={<Person />}
                   label='Login'
-                  sx={{ textTransform: 'none', fontWeight: 'bold' }}
+                  sx={{ textTransform: 'none', fontWeight: 'bold',color: "#654321" }}
                 />
                 <Tab
                   icon={<PersonAdd />}
                   label='Sign Up'
-                  sx={{ textTransform: 'none', fontWeight: 'bold' }}
+                  sx={{ textTransform: 'none', fontWeight: 'bold',color: "#654321" }}
                 />
               </Tabs>
               <TabPanel value={value} index={0}>
