@@ -5,7 +5,7 @@ import {
   useGetStudentQuery,
   useDeleteStudentMutation,
   useAddStudentMutation,
-} from '../../services/ManagmentApi'
+} from '../../services/ManagmentStudentsApi'
 import { removeToken, getToken } from '../../services/LocalStorageService'
 import {
   Box,

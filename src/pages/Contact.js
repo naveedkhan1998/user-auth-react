@@ -8,7 +8,7 @@ const Contact = () => {
   };
 
   return (
-    <Grid container justifyContent="center" spacing={3} sx={{ py: 8, mx: 'auto'}}>
+    <Grid container justifyContent="center" sx={{ py: 8, mx: 'auto'}}>
       <Grid item xs={12} md={7} >
         <ContactForm onSubmit={handleSubmit} sx={{backgroundColor: '#f5deb3',color:'#654321'}}>
           <h1>Contact Us</h1>

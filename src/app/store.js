@@ -4,6 +4,7 @@ import { baseApi } from '../services/baseApi'
 import authReducer from '../features/authSlice'
 import userReducer from '../features/userSlice'
 import studentReducer from '../features/studentSlice'
+import standardReducer from '../features/standardSlice'
 
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     auth:authReducer,
     user:userReducer,
     students:studentReducer,
+    standards:standardReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

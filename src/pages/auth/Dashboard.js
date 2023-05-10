@@ -1,5 +1,13 @@
-import { Box, Button,CssBaseline,Grid,Typography,Paper } from '@mui/material'
+import { Box, 
+    Button,CssBaseline,
+    Grid,Typography,
+    Accordion, 
+    AccordionSummary, 
+    AccordionDetails,
+    Tab,
+    Tabs } from '@mui/material'
 import { useDispatch,useSelector } from 'react-redux'
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../features/authSlice'
 import { getToken, removeToken } from '../../services/LocalStorageService'
@@ -12,6 +20,8 @@ import StudentsList from './StudentsList'
 import { getCurrentToken } from '../../features/authSlice'
 import { toast } from 'react-toastify';
 import {Avatar} from '@mui/material'
+import DashboardTeacher from './DashboardTeacher'
+import DashboardParent from './DashboardParent'
 
 const Dashboard = () => {
 
@@ -66,87 +76,30 @@ const Dashboard = () => {
     const userData = useSelector(getCurrentUserDetails)
 
   return <>
-    <CssBaseline >
-        {userData.is_teacher?
-        <Container sx={{ backgroundColor: '#f5deb3', py: 12, px: 4 }}>
-            <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
-                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
-                    Teacher Dashboard
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sm={4} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
-                    <Grid container spacing={2} alignItems="center" justifyContent="center">
-                    <Grid item>
-                        <Avatar alt="User Profile" src={userData.avatar} sx={{ width: 100, height: 100 }} />
-                    </Grid>
-                    <Grid item>
-                        <Typography variant="h5" sx={{ color: '#f5deb3' }}>
-                        Email: {userData.email}
-                        </Typography>
-                        <Typography variant="h6" sx={{ color: '#f5deb3' }}>
-                        Name: {userData.name}
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Button variant="contained" color="warning" size="large" onClick={handleLogout} sx={{ mt: 4 }}>
-                        Logout
-                        </Button>
-                    </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} sm={8} sx={{ borderRadius: 9, py: 4 }}>
-                    <ChangePassword />
-                </Grid>
-                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
-                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
-                    Students
-                    </Typography>
-                </Grid>
-            </Grid>
-      </Container>
-        :
-        <Container sx={{ backgroundColor: '#f5deb3', py: 12, px: 4 }}>
-            <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }}>
-                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
-                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
-                    Parent Dashboard
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} sm={4} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
-                    <Grid container spacing={2} alignItems="center" justifyContent="center">
-                    <Grid item>
-                        <Avatar alt="User Profile" src={userData.avatar} sx={{ width: 100, height: 100 }} />
-                    </Grid>
-                    <Grid item>
-                        <Typography variant="h5" sx={{ color: '#f5deb3' }}>
-                        Email: {userData.email}
-                        </Typography>
-                        <Typography variant="h6" sx={{ color: '#f5deb3' }}>
-                        Name: {userData.name}
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Button variant="contained" color="warning" size="large" onClick={handleLogout} sx={{ mt: 4 }}>
-                        Logout
-                        </Button>
-                    </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} sm={8} sx={{ borderRadius: 9, py: 4 }}>
-                    <ChangePassword />
-                </Grid>
-                <Grid item xs={12} sx={{ backgroundColor: '#654321', borderRadius: 9, py: 4 }}>
-                    <Typography variant="h3" align="center" sx={{ color: '#f5deb3' }}>
-                    Students
-                    </Typography>
-                </Grid>
-            </Grid>
-      </Container>
-            }
+    <CssBaseline />
+        {/* Logout button */}
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 4 }}>
+        <Button variant="contained" size="small" onClick={handleLogout} sx={{color:'#f5deb3',backgroundColor: "#654321"}}>
+            Logout
+        </Button>
+        </Box>
 
-        
-    </CssBaseline>
+        {/* Main content */}
+        <Grid container spacing={3} sx={{ p: 4 }}>
+        <Grid item xs={12}>
+            {userData.is_teacher ? <DashboardTeacher /> : <DashboardParent />}
+        </Grid>
+        </Grid>
+
+        {/* Change password dropdown */}
+        <Accordion sx={{ position: 'fixed', bottom: 16, right: 16 }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Change password</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+            <ChangePassword />
+        </AccordionDetails>
+        </Accordion>
   </>
 }
 

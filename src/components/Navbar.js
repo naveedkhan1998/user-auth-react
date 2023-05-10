@@ -71,7 +71,7 @@ const Navbar = () => {
       <AppBar position="static" color="primary" style={{ backgroundColor: "#654321" }} >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold',color: '#f5deb3' }}>
-            MNK-AUTH
+            MASTER MIND INSTITUTE
           </Typography>
           <Box sx={{ display: { xs: 'none', md: 'flex' ,backgroundColor: "#654321" } }}>
             {renderMenuItems()}
