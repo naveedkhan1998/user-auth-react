@@ -4,15 +4,26 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <Container sx={{py:6}}>
-      <Paper elevation={3} sx={{ py: 4, px: 2, borderRadius: 3 ,background: "linear-gradient(to bottom, skyblue, lavender, pink)"}}>
+    <Container sx={{ py: 6 }}>
+      <Paper
+        elevation={3}
+        sx={{
+          py: 4,
+          px: 2,
+          borderRadius: 3,
+          background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+        }}
+      >
         <Grid container>
           <Grid item xs={12} md={6}>
-            <Typography variant="h3" sx={{ fontWeight: "bold", mb: 4, mt: 4 }}>
+            <Typography
+              variant="h3"
+              sx={{ fontWeight: "bold", mb: 4, mt: 4, color: "grey" }}
+            >
               A Django-React Web Application with Advanced Authentication and
               CRUD Functionalities
             </Typography>
-            <Typography variant="body1" sx={{ mb: 4 }}>
+            <Typography variant="body1" sx={{ mb: 4, color: "grey" }}>
               This website is a robust and dynamic platform that seamlessly
               combines the power of Django for backend development and React for
               frontend presentation. The Django backend ensures a solid
