@@ -1,14 +1,33 @@
-import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/material'
-import { getCurrentToken } from '../features/authSlice'
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { AccountCircle } from '@mui/icons-material';
-import { getToken } from '../services/LocalStorageService';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+} from "@mui/material";
+import { getCurrentToken, logOut } from "../features/authSlice";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AccountCircle } from "@mui/icons-material";
+import { getToken, removeToken } from "../services/LocalStorageService";
+import { unSetUserInfo } from "../features/userSlice";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   //const access_token = useSelector(getCurrentToken);
-  const {access_token} = getToken()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    //console.log("logout clicked")
+    toast("Logged Out");
+    dispatch(unSetUserInfo());
+    dispatch(logOut());
+    removeToken();
+    navigate("/login");
+  };
+  const { access_token } = getToken();
   const [showMenu, setShowMenu] = useState(false);
 
   const handleMenuClick = () => {
@@ -25,7 +44,12 @@ const Navbar = () => {
         <Button
           component={NavLink}
           to="/"
-          sx={{ color: '#f5deb3', textTransform: 'none', fontWeight: 'bold', mr: 2 }}
+          sx={{
+            color: "grey",
+            textTransform: "none",
+            fontWeight: "bold",
+            mr: 2,
+          }}
           activeClassName="active-link"
           onClick={handleLinkClick}
         >
@@ -34,7 +58,12 @@ const Navbar = () => {
         <Button
           component={NavLink}
           to="/contact"
-          sx={{ color: '#f5deb3', textTransform: 'none', fontWeight: 'bold', mr: 2 }}
+          sx={{
+            color: "grey",
+            textTransform: "none",
+            fontWeight: "bold",
+            mr: 2,
+          }}
           activeClassName="active-link"
           onClick={handleLinkClick}
         >
@@ -44,41 +73,79 @@ const Navbar = () => {
           <Button
             component={NavLink}
             to="/login"
-            sx={{ color: '#f5deb3', textTransform: 'none', fontWeight: 'bold', mr: 2 }}
+            sx={{
+              color: "grey",
+              textTransform: "none",
+              fontWeight: "bold",
+              mr: 2,
+            }}
             activeClassName="active-link"
             onClick={handleLinkClick}
           >
             Login/Register
           </Button>
         ) : (
-          <Button
-            component={NavLink}
-            to="/dashboard"
-            sx={{ color: '#f5deb3', textTransform: 'none', fontWeight: 'bold', mr: 2 }}
-            activeClassName="active-link"
-            onClick={handleLinkClick}
-          >
-            Dashboard
-          </Button>
+          <>
+            <Button
+              component={NavLink}
+              to="/dashboard"
+              sx={{
+                color: "grey",
+                textTransform: "none",
+                fontWeight: "bold",
+                mr: 2,
+              }}
+              activeClassName="active-link"
+              onClick={handleLinkClick}
+            >
+              Dashboard
+            </Button>
+            <Button
+              onClick={handleLogout} // Add a click handler for logout
+              sx={{
+                color: "grey",
+                textTransform: "none",
+                fontWeight: "bold",
+                mr: 2,
+              }}
+            >
+              Logout
+            </Button>
+          </>
         )}
       </Box>
-
     );
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }} >
-      <AppBar position="static" color="primary" style={{ backgroundColor: "#654321" }} >
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="static"
+        color="primary"
+        style={{
+          background: "linear-gradient(to top, skyblue, lavender, pink)",
+        }}
+      >
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold',color: '#f5deb3' }}>
-            MASTER MIND INSTITUTE
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, fontWeight: "bold", color: "gray" }}
+          >
+            Django-React App
           </Typography>
-          <Box sx={{ display: { xs: 'none', md: 'flex' ,backgroundColor: "#654321" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              background: "linear-gradient(to top, skyblue, lavender, pink)",
+              borderRadius: "50px",
+            }}
+          >
             {renderMenuItems()}
           </Box>
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton sx={{ color: 'white' }} onClick={handleMenuClick}>
-              <AccountCircle/>
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton sx={{ color: "black" }} onClick={handleMenuClick}>
+              <AccountCircle />
             </IconButton>
             {showMenu && renderMenuItems()}
           </Box>
@@ -88,5 +155,4 @@ const Navbar = () => {
   );
 };
 
-
-export default Navbar
+export default Navbar;

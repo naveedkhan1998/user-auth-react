@@ -1,5 +1,8 @@
 .app-container {
-    height: '100vh';
-    background-color: #556b2f;
-  }
+  background: linear-gradient(to bottom, skyblue, lavender, pink);
+  background-size: 100% 100%;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  height:  auto;
+}
 

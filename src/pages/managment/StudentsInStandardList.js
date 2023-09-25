@@ -1,88 +1,140 @@
-import React, { useState,useEffect } from 'react';
-import { useFetcher, useParams } from 'react-router-dom'
-import { useSelector,useDispatch } from 'react-redux';
-import { getCurrentUserDetails } from '../../features/userSlice';
-import { setStudents } from '../../features/studentSlice';
-import { getCurrentStudentsList } from '../../features/studentSlice';
-import { getToken } from '../../services/LocalStorageService';
-import { useNavigate } from 'react-router-dom';
-import { useGetStudentQuery } from '../../services/ManagmentStudentsApi';
+import React, { useState, useEffect } from "react";
+import { useFetcher, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getCurrentUserDetails } from "../../features/userSlice";
+import { setStudents } from "../../features/studentSlice";
+import { getCurrentStudentsList } from "../../features/studentSlice";
+import { getToken } from "../../services/LocalStorageService";
+import { useNavigate } from "react-router-dom";
+import { useGetStudentQuery } from "../../services/ManagmentStudentsApi";
 import {
-    Box,
-    Button,
-    CircularProgress,
-    Grid,
-    IconButton,
-    Typography,
-  } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
-import DeleteIcon from '@mui/icons-material/Delete'
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const StudentsInStandardList = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const userData = useSelector(getCurrentUserDetails)
-    console.log(userData)
-    
-    useEffect(()=>{
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userData = useSelector(getCurrentUserDetails);
+  console.log(userData);
+
+  // comment this section for time being as redirect has been disabled for now
+  /*     useEffect(()=>{
         if (!userData.is_teacher){
             navigate('/dashboard')
         }
-    },[userData])
+    },[userData])  
+ */
+  const { id } = useParams();
+  //const access_token = useSelector(getCurrentToken)
+  const access_token = getToken();
+  const { data, isSuccess, isLoading, isError } = useGetStudentQuery(
+    id,
+    access_token
+  );
 
-    const {id} = useParams()
-    //const access_token = useSelector(getCurrentToken)
-    const access_token = getToken()
-    const {data,isSuccess,isLoading,isError} = useGetStudentQuery(id,access_token)
+  useEffect(() => {
+    if (isSuccess && data) {
+      dispatch(setStudents({ id: id, data: data.data }));
+    }
+  }, [isSuccess, data, isError]);
 
-    useEffect(()=>{
-        if (isSuccess && data){
-            dispatch(setStudents({id:id,data:data.data}))
-        }
-    },[isSuccess, data, isError])
+  const all_students = useSelector(getCurrentStudentsList);
+  const students = all_students.find((obj) => obj.id === id);
+  console.log(students);
 
-    const all_students = useSelector(getCurrentStudentsList)
-    const students = all_students.find(obj=>obj.id === id)
-    console.log(students)
-    
+  return (
+    <Container sx={{ py: 6 }}>
+      <Grid
+        container
+        sx={{
+          py: 6,
+          px: 3,
+          borderRadius: 3,
+          background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+          minHeight: "100vh",
+        }}
+      >
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+          students?.data.map((item) => (
+            <Grid
+              item
+              key={item.id}
+              xs={12}
+              sm={6}
+              md={4}
+              sx={{ padding: "3px" }}
+            >
+              <Box
+                borderRadius={3}
+                sx={{
+                  padding: 3,
+                  borderRadius: 3,
+                  background: "linear-gradient(to right, skyblue, lavender)",
+                  border: "3px solid skyblue",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "grey",
+                    textTransform: "none",
+                    fontWeight: "bold",
+                    mr: 2,
+                  }}
+                >
+                  Name:{item.name}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "grey",
+                    textTransform: "none",
+                    fontWeight: "bold",
+                    mr: 2,
+                  }}
+                >
+                  Standard:{item.standard.standard}
+                </Typography>
+                <Typography
+                  sx={{
+                    color: "grey",
+                    textTransform: "none",
+                    fontWeight: "bold",
+                    mr: 2,
+                  }}
+                >
+                  In Session: {item.is_in_session ? "True" : "False"}
+                </Typography>
 
-
-    
-
-  return <>
-  
-    <Grid container spacing={2}>
-          {isLoading ? (
-            <CircularProgress />
-          ) : (
-            students?.data.map((item) => (
-              <Grid item key={item.id} xs={12} sm={6} md={4}>
-                <Box borderRadius={9} sx={{ border: '1px solid grey', p: 2 }}>
-                  <Typography variant="h6">Name:{item.name}</Typography>
-                  <Typography>Standard:{item.standard.standard}</Typography>
-                  <Typography>In Session: {item.is_in_session?'True':'False'}</Typography>
-                  
-                  <Box
-                    mt={2}
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
+                <Box
+                  mt={2}
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Button
+                    variant="contained"
+                    //onClick={() => navigate(`/students/${item.id}`)}
                   >
-                    <Button
-                      variant="contained"
-                      //onClick={() => navigate(`/students/${item.id}`)}
-                    >
-                      Details
-                    </Button>
-                  </Box>
-               
-                  </Box>
-          </Grid>
-        ))
-      )}
-    </Grid>
-  
-  </>
-}
+                    Details
+                  </Button>
+                </Box>
+              </Box>
+            </Grid>
+          ))
+        )}
+      </Grid>
+    </Container>
+  );
+};
 
-export default StudentsInStandardList
+export default StudentsInStandardList;

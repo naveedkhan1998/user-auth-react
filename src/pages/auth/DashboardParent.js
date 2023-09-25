@@ -1,37 +1,77 @@
-import React from 'react'
-import { Container,Box,Grid,Typography,Avatar } from '@mui/material'
-import { useSelector } from 'react-redux'
-import { getCurrentUserDetails } from '../../features/userSlice'
+import React from "react";
+import { Container, Box, Grid, Typography, Avatar } from "@mui/material";
+import { useSelector } from "react-redux";
+import { getCurrentUserDetails } from "../../features/userSlice";
 
 const DashboardParent = () => {
+  const userData = useSelector(getCurrentUserDetails);
 
-    const userData = useSelector(getCurrentUserDetails)
-
-  return <>
-    <Container sx={{ backgroundColor: '#FFFFFF', py: 6 }}>
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={6}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-            <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 2 }}>
-              Parent Dashboard
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Avatar alt="User Profile" src={userData.avatar} sx={{ width: 100, height: 100, mb: 2 }} />
-              <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
-                {userData.name}
+  return (
+    <>
+      <Container
+        sx={{
+          borderRadius: 3,
+          background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+          py: 6,
+          height:"100vh"
+        }}
+      >
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <Typography
+                variant="h3"
+                sx={{ fontWeight: "bold", mb: 2, color: "grey" }}
+              >
+                Parent Dashboard
               </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {userData.email}
-              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar
+                  alt="User Profile"
+                  src={userData.avatar}
+                  sx={{ width: 100, height: 100, mb: 2 }}
+                />
+                <Typography
+                  variant="subtitle1"
+                  sx={{ fontWeight: "bold", mb: 1, color: "grey" }}
+                >
+                  {userData.name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "grey" }}>
+                  {userData.email}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box sx={{ backgroundColor: '#F7F7F7', borderRadius: 2, p: 3 }}>
-            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
-              Students
-            </Typography>
-            {/* {isLoading ? (
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+                borderRadius: 3,
+                p: 3,
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", mb: 2, color: "grey" }}
+              >
+                Students
+              </Typography>
+              {/* {isLoading ? (
               <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <CircularProgress />
               </Box>
@@ -53,11 +93,12 @@ const DashboardParent = () => {
                 ))}
               </Grid>
             )} */}
-          </Box>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
     </>
-}
+  );
+};
 
-export default DashboardParent
+export default DashboardParent;
