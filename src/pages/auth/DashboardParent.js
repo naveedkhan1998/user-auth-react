@@ -13,7 +13,6 @@ const DashboardParent = () => {
           borderRadius: 3,
           background: "linear-gradient(to bottom, skyblue, lavender, pink)",
           py: 6,
-          height:"100vh"
         }}
       >
         <Grid container spacing={4}>

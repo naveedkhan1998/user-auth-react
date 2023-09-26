@@ -26,8 +26,8 @@ const Contact = () => {
   };
 
   return (
-    <Grid container justifyContent="center" sx={{ py: 6 }}>
-      <Grid item xs={12} md={7}>
+    <Grid container justifyContent="center" sx={{ py: 3}}>
+      <Grid item xs={12} sm={8} md={7} lg={7} padding={3}>
         <ContactForm
           onSubmit={handleSubmit}
           sx={{
@@ -64,7 +64,7 @@ const Contact = () => {
           </Button>
         </ContactForm>
       </Grid>
-      <Grid item xs={12} md={7} sx={{ py: 6 }}>
+      <Grid item xs={12} sm={8} md={7} lg={7}  padding={3}>
         <ContactInfo
           sx={{
             background: "linear-gradient(to bottom, lavender, pink)",

@@ -10,7 +10,7 @@ import { getCurrentToken, logOut } from "../features/authSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { AccountCircle } from "@mui/icons-material";
+import { MenuBookOutlined,Menu } from "@mui/icons-material";
 import { getToken, removeToken } from "../services/LocalStorageService";
 import { unSetUserInfo } from "../features/userSlice";
 import { toast } from "react-toastify";
@@ -132,7 +132,7 @@ const Navbar = () => {
             component="div"
             sx={{ flexGrow: 1, fontWeight: "bold", color: "gray" }}
           >
-            Django-React App
+            Django-React-App
           </Typography>
           <Box
             sx={{
@@ -145,7 +145,7 @@ const Navbar = () => {
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton sx={{ color: "black" }} onClick={handleMenuClick}>
-              <AccountCircle />
+              <Menu />
             </IconButton>
             {showMenu && renderMenuItems()}
           </Box>
