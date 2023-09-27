@@ -34,84 +34,78 @@ const ChangePassword = () => {
   //const myData = useSelector(state=>state.user)
   //console.log("change pass",myData)
   return (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        flexWarp: "warp",
+        maxWidth: "auto",
+        mx: 4,
+      }}
+    >
+      <h1>Change Password</h1>
       <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flexWarp: "warp",
-          maxWidth: 600,
-          mx: 4,
-        }}
+        component="form"
+        noValidate
+        sx={{ mt: 1 }}
+        id="password-change-form"
+        onSubmit={handleSubmit}
       >
-        <h1>Change Password</h1>
-        <Box
-          component="form"
-          noValidate
-          sx={{ mt: 1 }}
-          id="password-change-form"
-          onSubmit={handleSubmit}
-        >
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="password"
-            name="password"
-            label="New Password"
-            type="password"
-            autoComplete="new-password"
-          />
-          {server_error.password ? (
-            <Typography
-              style={{ fontSize: 12, color: "red", paddingLeft: "10" }}
-            >
-              {server_error.password[0]}
-            </Typography>
-          ) : (
-            ""
-          )}
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="password2"
-            name="password2"
-            label="Confirm New Password"
-            type="password"
-            autoComplete="new-password"
-          />
-          {server_error.password2 ? (
-            <Typography
-              style={{ fontSize: 12, color: "red", paddingLeft: "10" }}
-            >
-              {server_error.password2[0]}
-            </Typography>
-          ) : (
-            ""
-          )}
-          <Box textAlign="center">
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{ mt: 3, mb: 2, px: 5 }}
-            >
-              Update Password
-            </Button>
-          </Box>
-          {server_error.non_field_errors ? (
-            <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
-          ) : (
-            ""
-          )}
-          {server_msg.msg ? (
-            <Alert severity="success">{server_msg.msg}</Alert>
-          ) : (
-            ""
-          )}
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="password"
+          name="password"
+          label="New Password"
+          type="password"
+          autoComplete="new-password"
+        />
+        {server_error.password ? (
+          <Typography style={{ fontSize: 12, color: "red", paddingLeft: "10" }}>
+            {server_error.password[0]}
+          </Typography>
+        ) : (
+          ""
+        )}
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="password2"
+          name="password2"
+          label="Confirm New Password"
+          type="password"
+          autoComplete="new-password"
+        />
+        {server_error.password2 ? (
+          <Typography style={{ fontSize: 12, color: "red", paddingLeft: "10" }}>
+            {server_error.password2[0]}
+          </Typography>
+        ) : (
+          ""
+        )}
+        <Box textAlign="center">
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ mt: 3, mb: 2, px: 5 }}
+          >
+            Update Password
+          </Button>
         </Box>
+        {server_error.non_field_errors ? (
+          <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
+        ) : (
+          ""
+        )}
+        {server_msg.msg ? (
+          <Alert severity="success">{server_msg.msg}</Alert>
+        ) : (
+          ""
+        )}
       </Box>
-    </>
+    </Box>
   );
 };
 

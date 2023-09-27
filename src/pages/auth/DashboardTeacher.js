@@ -49,31 +49,34 @@ const DashboardTeacher = () => {
   return (
     <>
       <Grid
+        boxShadow={3}
+        borderRadius={3}
         sx={{
           borderRadius: 3,
           background: "linear-gradient(to bottom, skyblue, lavender, pink)",
           py: 6,
-         
+          px: 3,
         }}
       >
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
+        <Grid container>
+          <Grid item xs={12} md={12} boxShadow={3} borderRadius={3} m={2}>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "100%",
               }}
             >
               <Typography
-                variant="h3"
+                variant="h4"
+                margin={3}
                 sx={{ fontWeight: "bold", mb: 2, color: "grey" }}
               >
-                Teacher Dashboard
+                Main Dashboard
               </Typography>
               <Box
+                margin={3}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -89,19 +92,19 @@ const DashboardTeacher = () => {
                   variant="subtitle1"
                   sx={{ fontWeight: "bold", mb: 1, color: "grey" }}
                 >
-                  {userData.name}
+                  Name: {userData.name}
                 </Typography>
                 <Typography variant="body2" sx={{ color: "grey" }}>
-                  {userData.email}
+                  Email: {userData.email}
                 </Typography>
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12} boxShadow={3} borderRadius={3} m={2}>
             <Box
               sx={{
                 background:
-                  "linear-gradient(to bottom, skyblue, lavender)",
+                  "linear-gradient(to bottom, skyblue, lavender,pink)",
                 borderRadius: 3,
                 p: 3,
               }}
@@ -123,16 +126,18 @@ const DashboardTeacher = () => {
                   <CircularProgress />
                 </Box>
               ) : (
-                <Grid container spacing={3} sx={{padding:3}}>
+                <Grid container spacing={3}>
                   {storeStandards?.map((item) => (
                     <Grid item key={item.id} xs={12} sm={6} md={4}>
                       <Box
+                        boxShadow={3}
+                        borderRadius={3}
                         sx={{
                           background:
-                            "linear-gradient(to bottom, skyblue, lavender)",
+                            "linear-gradient(to bottom, skyblue, lavender,pink)",
                           borderRadius: 3,
                           p: 3,
-                          padding:3
+                          padding: 3,
                         }}
                       >
                         <Typography
@@ -145,7 +150,7 @@ const DashboardTeacher = () => {
                           variant="subtitle2"
                           sx={{ fontWeight: "bold", mb: 1, color: "grey" }}
                         >
-                          In Session: {item.is_in_session ? "True" : "False"}
+                          In Session: {item.is_in_session ? "🟢" : "🔴"}
                         </Typography>
                         <Box
                           sx={{
@@ -155,8 +160,8 @@ const DashboardTeacher = () => {
                           }}
                         >
                           <Button
-                            variant="contained"
-                            sx={{ borderRadius: 20, px: 4 }}
+                            variant="outlined"
+                            sx={{ borderRadius: 3, px: 3, py: 1 }}
                             onClick={() => {
                               navigate(`/standard/${item.id}`);
                             }}

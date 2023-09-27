@@ -28,7 +28,7 @@ const LoginReg = () => {
   return (
     <animated.div style={fade}>
       <Grid container justifyContent="center"  sx={{ py: 6,}}>
-        <Grid item xs={12} sm={8} md={6} lg={4}>
+        <Grid item xs={12} sm={8} md={7} lg={7} padding={3}>
           <Card sx={{ borderRadius: '12px',background: "linear-gradient(to bottom, skyblue, lavender, pink)"} }>
             <Box sx={{ padding: '24px' }}>
               <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 2,color: "grey" }}>

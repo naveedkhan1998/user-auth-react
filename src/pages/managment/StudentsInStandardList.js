@@ -53,10 +53,11 @@ const StudentsInStandardList = () => {
   return (
     <Container sx={{ py: 6 }}>
       <Grid
+        boxShadow={3}
+        borderRadius={3}
         container
         sx={{
-          py: 6,
-          px: 3,
+          
           borderRadius: 3,
           background: "linear-gradient(to bottom, skyblue, lavender, pink)",
           minHeight: "100vh",
@@ -66,21 +67,15 @@ const StudentsInStandardList = () => {
           <CircularProgress />
         ) : (
           students?.data.map((item) => (
-            <Grid
-              item
-              key={item.id}
-              xs={12}
-              sm={6}
-              md={4}
-              sx={{ padding: "3px" }}
-            >
+            <Grid item key={item.id} xs={12} sm={6} md={4} p={4}>
               <Box
+                boxShadow={3}
                 borderRadius={3}
                 sx={{
                   padding: 3,
                   borderRadius: 3,
-                  background: "linear-gradient(to right, skyblue, lavender)",
-                  border: "3px solid skyblue",
+                  background:
+                    "linear-gradient(to bottom, skyblue, lavender,pink)",
                 }}
               >
                 <Typography
@@ -112,7 +107,7 @@ const StudentsInStandardList = () => {
                     mr: 2,
                   }}
                 >
-                  In Session: {item.is_in_session ? "True" : "False"}
+                  In Session: {item.is_in_session ? "🟢" : "🔴"}
                 </Typography>
 
                 <Box
@@ -122,7 +117,8 @@ const StudentsInStandardList = () => {
                   alignItems="center"
                 >
                   <Button
-                    variant="contained"
+                    variant="outlined"
+                    borderRadius={3}
                     //onClick={() => navigate(`/students/${item.id}`)}
                   >
                     Details

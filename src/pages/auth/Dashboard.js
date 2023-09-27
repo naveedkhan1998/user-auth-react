@@ -77,7 +77,7 @@ const Dashboard = () => {
     <>
       <CssBaseline />
       {/* Main content */}
-      <Grid container spacing={3} sx={{ p: 4 }}>
+      <Grid container spacing={3} sx={{ p: 6 }}>
         <Grid item xs={12}>
           {/* {userData.is_teacher ? <DashboardTeacher /> : <DashboardParent />}   later when done building completely fix it*/}
           {userData.is_teacher ? <DashboardTeacher /> : <DashboardTeacher />}
@@ -85,11 +85,29 @@ const Dashboard = () => {
       </Grid>
 
       {/* Change password dropdown */}
-      <Accordion sx={{ position: "fixed", bottom: 16, right: 16 }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Change password</Typography>
+      <Accordion
+        sx={{
+          position: "fixed",
+          bottom: 16,
+          right: 16,
+        }}
+      >
+        <AccordionSummary
+          sx={{
+            background: "linear-gradient(to top,skyblue,lavender,pink)",
+          }}
+          expandIcon={<ExpandMoreIcon sx={{ color: "grey" }} />}
+        >
+          <Typography variant="h6" sx={{ pl: 3, color: "grey" }}>
+            Change password
+          </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails
+          sx={{
+            background: "linear-gradient(to bottom,skyblue,lavender,pink)",
+            padding: 4,
+          }}
+        >
           <ChangePassword />
         </AccordionDetails>
       </Accordion>
