@@ -18,11 +18,13 @@ import {
 } from "../../services/UserAuthApi";
 import { setCredentials, logOut } from "../../features/authSlice";
 import { toast } from "react-toastify";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const UserRegistration = () => {
   const dispatch = useDispatch();
   const [server_error, setServerError] = useState({});
   const [otp_generated, setOtpGenerated] = useState(false);
+  const [isCaptchaSolved, setIsCaptchaSolved] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,6 +33,11 @@ const UserRegistration = () => {
   const [sendOTP, { isLoading: LoadingSendOTP }] = useSendOTPMutation();
 
   const handleOTP = async (e) => {
+    if (!isCaptchaSolved) {
+      e.preventDefault();
+      toast("Please solve the CAPTCHA");
+      return;
+    }
     e.preventDefault();
     const data2 = new FormData(e.currentTarget);
     const emailData = {
@@ -75,6 +82,13 @@ const UserRegistration = () => {
       navigate("/dashboard");
     }
   };
+  const handleCaptchaChange = (value) => {
+    if (value) {
+      setIsCaptchaSolved(true);
+    } else {
+      setIsCaptchaSolved(false);
+    }
+  };
 
   return (
     <>
@@ -100,6 +114,10 @@ const UserRegistration = () => {
               id="email_otp"
               name="email_otp"
               label="Email Address"
+            />
+            <ReCAPTCHA
+              sitekey="6LcAAtooAAAAACEKM0Tr8tEldIIONanUrvB0bhHQ"
+              onChange={handleCaptchaChange}
             />
             {server_error.email ? (
               <Typography
