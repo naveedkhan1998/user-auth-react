@@ -22,7 +22,6 @@ The backend server that powers the website is hosted separately from the live si
 - MySQL: a reliable and scalable open-source relational database management system.
 - Git: a distributed version control system for tracking changes in code.
 
-
 ## Conclusion
 
 My website is a great resource for anyone looking to stay up-to-date on the latest news and trends. The site is fast, secure, and easy to use, thanks to the cutting-edge technologies used to build it. Whether you're a tech enthusiast or just looking for some entertainment news, my website has something for everyone.

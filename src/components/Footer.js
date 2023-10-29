@@ -20,10 +20,7 @@ const Footer = () => {
         </Link>
       </Typography>
       <Typography variant="body2">
-        <Link
-          href="#"
-          color="inherit"
-        >
+        <Link href="#" color="inherit">
           Terms of Service
         </Link>
       </Typography>

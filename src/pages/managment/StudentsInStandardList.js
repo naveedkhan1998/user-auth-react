@@ -33,7 +33,7 @@ const StudentsInStandardList = () => {
     access_token
   );
 
- /*  useEffect(() => {
+  /*  useEffect(() => {
     if (!userData.is_teacher) {
       navigate("/dashboard");
     }

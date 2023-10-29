@@ -1,9 +1,8 @@
 .app-container {
-  background: #E16428;
+  background: #e16428;
   background-size: 100% 100%;
-  color: #F6E9E9;
+  color: #f6e9e9;
   font-family: Arial, sans-serif;
-  height:  auto;
+  height: auto;
   min-height: 100vh;
 }
-
