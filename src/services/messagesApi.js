@@ -4,6 +4,18 @@ import { baseApi } from "./baseApi";
 
 export const messageApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getMessage: builder.query({
+      query:(access_token)=>{
+        return {
+          url: "/api/message/",
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${access_token}`
+          },
+        };
+      },
+    }),
     addMessage: builder.mutation({
       query: ( actualData ) => {
         return {
@@ -19,4 +31,4 @@ export const messageApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddMessageMutation } = messageApi;
+export const { useAddMessageMutation,useGetMessageQuery } = messageApi;

@@ -6,6 +6,7 @@ import {
   Box,
   Alert,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,8 +26,9 @@ const UserRegistration = () => {
 
   const navigate = useNavigate();
 
-  const [registerUser, { isLoading }] = useRegisterUserMutation();
-  const [sendOTP] = useSendOTPMutation();
+  const [registerUser, { isLoading: LoadingRegisterUser }] =
+    useRegisterUserMutation();
+  const [sendOTP, { isLoading: LoadingSendOTP }] = useSendOTPMutation();
 
   const handleOTP = async (e) => {
     e.preventDefault();
@@ -109,13 +111,17 @@ const UserRegistration = () => {
               ""
             )}
             <Box textAlign="center">
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{ mt: 3, mb: 2, px: 5 }}
-              >
-                Generate OTP
-              </Button>
+              {LoadingSendOTP ? (
+                <CircularProgress size={30} />
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, px: 5 }}
+                >
+                  Generate OTP
+                </Button>
+              )}
             </Box>
             {server_error.non_field_errors ? (
               <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
@@ -238,13 +244,17 @@ const UserRegistration = () => {
               ""
             )}
             <Box textAlign="center">
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{ mt: 3, mb: 2, px: 5 }}
-              >
-                Register
-              </Button>
+              {LoadingRegisterUser ? (
+                <CircularProgress size={30} />
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, px: 5 }}
+                >
+                  Register
+                </Button>
+              )}
             </Box>
             {server_error.non_field_errors ? (
               <Alert severity="error">{server_error.non_field_errors[0]}</Alert>

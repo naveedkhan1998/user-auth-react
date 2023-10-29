@@ -17,7 +17,7 @@ function Home() {
         sx={{
           px: 2,
           borderRadius: 3,
-          background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+          background: "#F6E9E9",
         }}
       >
         <Grid item xs={10} sm={8} md={7} lg={7} padding={3}>
@@ -74,7 +74,7 @@ function Home() {
           }}
         >
           <Button
-            variant="outlined" // Use "outlined" variant for a transparent button
+            variant="outlined"
             component={Link}
             to="/contact"
             sx={{ mt: 3 }}

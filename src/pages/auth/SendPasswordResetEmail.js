@@ -1,29 +1,37 @@
-import { Grid, TextField, Button, Box, Alert, Typography } from "@mui/material";
+import {
+  Grid,
+  TextField,
+  Button,
+  Box,
+  Alert,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import { useSendPasswordResetEmailMutation } from "../../services/UserAuthApi";
 
-const SendPasswsordResetEmail = () => {
+const SendPasswordResetEmail = () => {
   const [server_error, setServerError] = useState({});
   const [server_msg, setServerMsg] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [sendPasswordResetEmail, { isLoading }] =
-    useSendPasswordResetEmailMutation();
+  const [sendPasswordResetEmail] = useSendPasswordResetEmailMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading state
     const data = new FormData(e.currentTarget);
     const actualData = {
       email: data.get("email"),
     };
     const res = await sendPasswordResetEmail(actualData);
+    setIsLoading(false); // Reset loading state after the request is completed
+
     if (res.error) {
       setServerMsg({});
       setServerError(res.error.data);
-      //console.log(res.error.data)
     }
     if (res.data) {
-      //console.log(res.data)
       setServerError({});
       setServerMsg(res.data);
       document.getElementById("password-reset-email-form").reset();
@@ -43,7 +51,7 @@ const SendPasswsordResetEmail = () => {
           xs={12}
           sx={{
             borderRadius: "12px",
-            background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+            background: "#F6E9E9",
             px: 3,
           }}
         >
@@ -87,13 +95,17 @@ const SendPasswsordResetEmail = () => {
               ""
             )}
             <Box textAlign="center">
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{ mt: 3, mb: 2, px: 5 }}
-              >
-                Send Email
-              </Button>
+              {isLoading ? (
+                <CircularProgress size={30} /> // Show a loading spinner
+              ) : (
+                <Button
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2, px: 5 }}
+                >
+                  Send Email
+                </Button>
+              )}
             </Box>
             {server_error.non_field_errors ? (
               <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
@@ -112,4 +124,4 @@ const SendPasswsordResetEmail = () => {
   );
 };
 
-export default SendPasswsordResetEmail;
+export default SendPasswordResetEmail;

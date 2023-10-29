@@ -4,19 +4,9 @@ import {
   Box,
   Button,
   CircularProgress,
-  Container,
-  CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Grid,
-  IconButton,
-  TextField,
   Typography,
   Avatar,
-  Paper,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -25,17 +15,19 @@ import { getCurrentUserDetails } from "../../features/userSlice";
 import { useGetStandardQuery } from "../../services/ManagmentStandardApi";
 import { setstandards, getStandardsList } from "../../features/standardSlice";
 import { getCurrentToken } from "../../features/authSlice";
+import MessagesList from "./MessagesList";
 
 const DashboardTeacher = () => {
   const dispatch = useDispatch();
   const userData = useSelector(getCurrentUserDetails);
   const access_token = useSelector(getCurrentToken);
+
   const { data, isSuccess, isLoading, isError } =
     useGetStandardQuery(access_token);
+
   const navigate = useNavigate();
   useEffect(() => {
     if (isSuccess && data) {
-      //console.log(data)
       dispatch(setstandards([...data?.data]));
     }
     if (isError) {
@@ -44,22 +36,20 @@ const DashboardTeacher = () => {
   }, [isSuccess, data, isError]);
 
   const storeStandards = useSelector(getStandardsList);
-  //console.log("in teach",storeStandards)
 
   return (
     <>
       <Grid
         boxShadow={3}
         borderRadius={3}
+        padding={3}
         sx={{
-          borderRadius: 3,
-          background: "linear-gradient(to bottom, skyblue, lavender, pink)",
-          py: 6,
-          px: 3,
+          background: "#F6E9E9",
+          marginBottom: "20px",
         }}
       >
         <Grid container>
-          <Grid item xs={12} md={12} boxShadow={3} borderRadius={3} m={2}>
+          <Grid item xs={12} md={6} boxShadow={3} borderRadius={3}>
             <Box
               sx={{
                 display: "flex",
@@ -70,13 +60,11 @@ const DashboardTeacher = () => {
             >
               <Typography
                 variant="h4"
-                margin={3}
                 sx={{ fontWeight: "bold", mb: 2, color: "grey" }}
               >
                 Main Dashboard
               </Typography>
               <Box
-                margin={3}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -100,11 +88,10 @@ const DashboardTeacher = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={12} boxShadow={3} borderRadius={3} m={2}>
+          <Grid item xs={12} md={6} boxShadow={3} borderRadius={3}>
             <Box
               sx={{
-                background:
-                  "linear-gradient(to bottom, skyblue, lavender,pink)",
+                background: "#F6E9E9",
                 borderRadius: 3,
                 p: 3,
               }}
@@ -133,11 +120,9 @@ const DashboardTeacher = () => {
                         boxShadow={3}
                         borderRadius={3}
                         sx={{
-                          background:
-                            "linear-gradient(to bottom, skyblue, lavender,pink)",
+                          background: "#F6E9E9",
                           borderRadius: 3,
                           p: 3,
-                          padding: 3,
                         }}
                       >
                         <Typography
@@ -175,6 +160,14 @@ const DashboardTeacher = () => {
                 </Grid>
               )}
             </Box>
+          </Grid>
+          <Grid item xs={12} md={12} boxShadow={3} borderRadius={3}>
+            <div style={{ padding: "16px" }}>
+              <Typography variant="h3" color="textSecondary">
+                Messages
+              </Typography>
+              <MessagesList />
+            </div>
           </Grid>
         </Grid>
       </Grid>

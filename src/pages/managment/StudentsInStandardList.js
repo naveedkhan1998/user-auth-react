@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useFetcher, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { getCurrentUserDetails } from "../../features/userSlice";
-import { setStudents } from "../../features/studentSlice";
-import { getCurrentStudentsList } from "../../features/studentSlice";
+import {
+  setStudents,
+  getCurrentStudentsList,
+} from "../../features/studentSlice";
 import { getToken } from "../../services/LocalStorageService";
 import { useNavigate } from "react-router-dom";
 import { useGetStudentQuery } from "../../services/ManagmentStudentsApi";
+
 import {
   Box,
   Button,
   CircularProgress,
   Container,
   Grid,
-  IconButton,
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -23,43 +25,37 @@ const StudentsInStandardList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector(getCurrentUserDetails);
-  console.log(userData);
 
-  // comment this section for time being as redirect has been disabled for now
-  /*     useEffect(()=>{
-        if (!userData.is_teacher){
-            navigate('/dashboard')
-        }
-    },[userData])  
- */
   const { id } = useParams();
-  //const access_token = useSelector(getCurrentToken)
   const access_token = getToken();
   const { data, isSuccess, isLoading, isError } = useGetStudentQuery(
     id,
     access_token
   );
 
+ /*  useEffect(() => {
+    if (!userData.is_teacher) {
+      navigate("/dashboard");
+    }
+  }, [userData, navigate]);
+ */
   useEffect(() => {
     if (isSuccess && data) {
       dispatch(setStudents({ id: id, data: data.data }));
     }
-  }, [isSuccess, data, isError]);
+  }, [isSuccess, data, dispatch]);
 
   const all_students = useSelector(getCurrentStudentsList);
   const students = all_students.find((obj) => obj.id === id);
-  console.log(students);
 
   return (
     <Container sx={{ py: 6 }}>
       <Grid
-        boxShadow={3}
-        borderRadius={3}
         container
         sx={{
-          
+          boxShadow: 3,
           borderRadius: 3,
-          background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+          background: "#F6E9E9",
           minHeight: "100vh",
         }}
       >
@@ -69,13 +65,11 @@ const StudentsInStandardList = () => {
           students?.data.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={4} p={4}>
               <Box
-                boxShadow={3}
-                borderRadius={3}
                 sx={{
-                  padding: 3,
+                  boxShadow: 3,
                   borderRadius: 3,
-                  background:
-                    "linear-gradient(to bottom, skyblue, lavender,pink)",
+                  background: "#F6E9E9",
+                  padding: 3,
                 }}
               >
                 <Typography
@@ -87,7 +81,7 @@ const StudentsInStandardList = () => {
                     mr: 2,
                   }}
                 >
-                  Name:{item.name}
+                  Name: {item.name}
                 </Typography>
                 <Typography
                   sx={{
@@ -97,7 +91,7 @@ const StudentsInStandardList = () => {
                     mr: 2,
                   }}
                 >
-                  Standard:{item.standard.standard}
+                  Standard: {item.standard.standard}
                 </Typography>
                 <Typography
                   sx={{
@@ -109,7 +103,6 @@ const StudentsInStandardList = () => {
                 >
                   In Session: {item.is_in_session ? "🟢" : "🔴"}
                 </Typography>
-
                 <Box
                   mt={2}
                   display="flex"

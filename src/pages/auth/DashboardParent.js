@@ -11,7 +11,7 @@ const DashboardParent = () => {
       <Container
         sx={{
           borderRadius: 3,
-          background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+          background: "#F6E9E9",
           py: 6,
         }}
       >
@@ -59,7 +59,8 @@ const DashboardParent = () => {
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                background: "linear-gradient(to bottom, skyblue, lavender, pink)",
+                background:
+                  "#F6E9E9",
                 borderRadius: 3,
                 p: 3,
               }}

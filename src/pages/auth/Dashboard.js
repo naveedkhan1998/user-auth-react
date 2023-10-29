@@ -94,7 +94,7 @@ const Dashboard = () => {
       >
         <AccordionSummary
           sx={{
-            background: "linear-gradient(to top,skyblue,lavender,pink)",
+            background: "#F6E9E9",
           }}
           expandIcon={<ExpandMoreIcon sx={{ color: "grey" }} />}
         >
@@ -104,7 +104,7 @@ const Dashboard = () => {
         </AccordionSummary>
         <AccordionDetails
           sx={{
-            background: "linear-gradient(to bottom,skyblue,lavender,pink)",
+            background: "#F6E9E9",
             padding: 4,
           }}
         >
