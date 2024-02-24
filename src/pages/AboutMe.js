@@ -49,10 +49,7 @@ function AboutMe() {
             technologies, such as JWT-based authentication and powerful CRUD
             operations. The combination of Django's reliability on the backend
             and React's responsiveness on the frontend ensures that the
-            applications I build are both secure and user-friendly. Beyond
-            coding, I find joy in exploring the worlds of anime, manga, and
-            manhwa. These diverse storytelling mediums inspire my creativity and
-            offer a refreshing break from the intricacies of coding. My ultimate
+            applications I build are both secure and user-friendly. My ultimate
             goal is to become the best web developer there is, continuously
             learning and evolving in this ever-changing field. Feel free to
             explore my projects and get in touch if you have any questions or
