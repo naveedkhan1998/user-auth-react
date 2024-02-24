@@ -1,4 +1,4 @@
-https://naveedkhan1998.github.io/user-auth-react/
+https://user-auth-react.vercel.app/
 
 # User-Auth
 
@@ -8,7 +8,7 @@ The website is built using React for the frontend and Python for the backend.
 
 ## Live Site
 
-The live site can be accessed at [https://naveedkhan1998.github.io/user-auth-react/]https://naveedkhan1998.github.io/user-auth-react/). The site is hosted on a github pages.
+The live site can be accessed at [https://user-auth-react.vercel.app/](https://user-auth-react.vercel.app/). The site is hosted on a github pages.
 
 ## Backend Server
 
