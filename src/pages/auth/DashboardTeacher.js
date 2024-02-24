@@ -6,23 +6,21 @@ import StandardsList from "../managment/StandardsList";
 
 const DashboardTeacher = () => {
   return (
-    <>
-      <Grid
-        boxShadow={3}
-        borderRadius={3}
-        padding={3}
-        sx={{
-          background: "#F6E9E9",
-          marginBottom: "20px",
-        }}
-      >
-        <Grid container>
-          <UserInfo />
-          <StandardsList />
-          <MessagesList />
-        </Grid>
-      </Grid>
-    </>
+    <Grid
+      container
+      boxShadow={12}
+      borderRadius={6}
+      alignItems={"center"}
+      justifyContent={"center"}
+      sx={{
+        background: "#F6E9E9",
+        marginBottom: "20px",
+      }}
+    >
+      <UserInfo />
+      <StandardsList />
+      <MessagesList />
+    </Grid>
   );
 };
 

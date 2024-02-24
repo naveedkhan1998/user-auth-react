@@ -26,11 +26,11 @@ const StandardsList = () => {
   const storeStandards = useSelector(getStandardsList);
 
   return (
-    <Grid item xs={12} md={6} boxShadow={3} borderRadius={3}>
+    <Grid item xs={12} md={6} boxShadow={3} borderRadius={6}>
       <Box
         sx={{
           background: "#F6E9E9",
-          borderRadius: 3,
+          borderRadius: 6,
           p: 3,
         }}
       >
@@ -51,15 +51,15 @@ const StandardsList = () => {
             <CircularProgress />
           </Box>
         ) : (
-          <Grid container spacing={3}>
+          <Grid container spacing={3} borderRadius={6}>
             {storeStandards?.map((item) => (
               <Grid item key={item.id} xs={12} sm={6} md={4}>
                 <Box
                   boxShadow={3}
-                  borderRadius={3}
+                  borderRadius={6}
                   sx={{
                     background: "#F6E9E9",
-                    borderRadius: 3,
+                    borderRadius: 6,
                     p: 3,
                   }}
                 >

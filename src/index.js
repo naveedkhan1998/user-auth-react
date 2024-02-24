@@ -14,18 +14,19 @@ root.render(
     <Provider store={store}>
       <div className="app-container">
         <App />
+
+        <ToastContainer
+          position="top-right"
+          autoClose={1300}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+        />
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={1300}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-      />
     </Provider>
   </React.StrictMode>
 );

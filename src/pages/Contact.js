@@ -45,7 +45,7 @@ const Contact = () => {
   return (
     <Grid container justifyContent="center" sx={{ py: 3 }}>
       <Grid item xs={12} sm={8} md={7} lg={7} padding={3}>
-        {isLoading ? ( // Display loading animation if isLoading is true
+        {isLoading ? (
           <CircularProgress />
         ) : (
           <ContactForm
@@ -53,6 +53,21 @@ const Contact = () => {
             sx={{
               background: "#F6E9E9",
               color: "grey",
+              padding: 3,
+              borderRadius: 6,
+              boxShadow: 2,
+              "& h1": {
+                marginBottom: 2,
+              },
+              "& p": {
+                marginBottom: 2,
+              },
+              "& .MuiTextField-root": {
+                marginBottom: 2,
+              },
+              "& .MuiButton-root": {
+                marginTop: 2,
+              },
             }}
           >
             <h1>Contact Us</h1>
@@ -95,6 +110,16 @@ const Contact = () => {
           sx={{
             background: "#F6E9E9",
             color: "grey",
+            padding: 3,
+            borderRadius: 6,
+            boxShadow: 2,
+            textAlign: "center",
+            "& h2": {
+              marginBottom: 2,
+            },
+            "& p": {
+              marginBottom: 1,
+            },
           }}
         >
           <h2>Get In Touch</h2>
@@ -110,7 +135,6 @@ const Contact = () => {
     </Grid>
   );
 };
-
 const ContactForm = styled("form")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",

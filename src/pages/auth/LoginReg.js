@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Grid, Card, Tabs, Tab, Box, Typography } from '@mui/material';
-import { Person, PersonAdd } from '@mui/icons-material';
-import UserLogin from './UserLogin';
-import UserRegistration from './UserRegistration';
-import { useSpring, animated } from 'react-spring';
+import { useState } from "react";
+import { Grid, Card, Tabs, Tab, Box, Typography } from "@mui/material";
+import { Person, PersonAdd } from "@mui/icons-material";
+import UserLogin from "./UserLogin";
+import UserRegistration from "./UserRegistration";
+import { useSpring, animated } from "react-spring";
 
 const TabPanel = ({ children, value, index }) => {
   return (
@@ -27,29 +27,40 @@ const LoginReg = () => {
 
   return (
     <animated.div style={fade}>
-      <Grid container justifyContent="center"  sx={{ py: 6,}}>
+      <Grid container justifyContent="center" sx={{ py: 6 }}>
         <Grid item xs={12} sm={8} md={7} lg={7} padding={3}>
-          <Card sx={{ borderRadius: '12px',background: "#F6E9E9"} }>
-            <Box sx={{ padding: '24px' }}>
-              <Typography variant='h4' sx={{ fontWeight: 'bold', mb: 2,color: "grey" }}>
+          <Card sx={{ borderRadius: 12, background: "#F6E9E9", p: 2 }}>
+            <Box sx={{ padding: 2 }}>
+              <Typography
+                variant="h4"
+                sx={{ fontWeight: "bold", mb: 2, color: "grey" }}
+              >
                 Login/Registration
               </Typography>
               <Tabs
                 value={value}
                 onChange={handleChange}
-                textColor='secondary'
-                indicatorColor='primary'
-                variant='fullWidth'
+                textColor="secondary"
+                indicatorColor="primary"
+                variant="fullWidth"
               >
                 <Tab
                   icon={<Person />}
-                  label='Login'
-                  sx={{ textTransform: 'none', fontWeight: 'bold',color: "grey" }}
+                  label="Login"
+                  sx={{
+                    textTransform: "none",
+                    fontWeight: "bold",
+                    color: "grey",
+                  }}
                 />
                 <Tab
                   icon={<PersonAdd />}
-                  label='Sign Up'
-                  sx={{ textTransform: 'none', fontWeight: 'bold',color: "grey" }}
+                  label="Sign Up"
+                  sx={{
+                    textTransform: "none",
+                    fontWeight: "bold",
+                    color: "grey",
+                  }}
                 />
               </Tabs>
               <TabPanel value={value} index={0}>

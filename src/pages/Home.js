@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <Container sx={{ py: 6 }}>
+    <Container sx={{ py: 6, minHeight: "" }}>
       <Paper
-        elevation={5}
+        elevation={12}
         sx={{
-          px: 2,
-          borderRadius: 3,
+          px: 6,
+          borderRadius: 6,
           background: "#F6E9E9",
         }}
       >

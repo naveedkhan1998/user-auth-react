@@ -73,15 +73,12 @@ const MessagesList = () => {
   };
 
   return (
-    <Grid item xs={12} md={12} boxShadow={3} borderRadius={3}>
+    <Grid item xs={12} md={12} boxShadow={6} borderRadius={6}>
       <div style={{ padding: "16px" }}>
         <Typography variant="h3" color="textSecondary">
           Messages
         </Typography>
         <Box mt={4} mx="auto" width="80%">
-          <Typography variant="h5" mb={2}>
-            Messages List
-          </Typography>
           <ToggleButtonGroup exclusive>
             <ToggleButton
               value="refreshing"

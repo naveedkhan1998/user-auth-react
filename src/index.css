@@ -1,8 +1,11 @@
 .app-container {
-  background: #e16428;
-  background-size: 100% 100%;
-  color: #f6e9e9;
-  font-family: Arial, sans-serif;
+  background-color: #344c63;
+  font-family: "League Spartan", sans-serif;
   height: auto;
-  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.main-container {
+  padding-bottom: 5%;
+  padding-top: 5%;
 }

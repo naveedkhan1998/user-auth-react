@@ -40,10 +40,10 @@ const ChangePassword = () => {
         flexDirection: "column",
         flexWarp: "warp",
         maxWidth: "auto",
-        mx: 4,
+        mx: 4
       }}
     >
-      <h1>Change Password</h1>
+      
       <Box
         component="form"
         noValidate

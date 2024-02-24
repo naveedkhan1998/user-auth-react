@@ -76,41 +76,40 @@ const Dashboard = () => {
   return (
     <>
       <CssBaseline />
-      {/* Main content */}
+
       <Grid container spacing={3} sx={{ p: 6 }}>
         <Grid item xs={12}>
-          {/* {userData.is_teacher ? <DashboardTeacher /> : <DashboardParent />}   later when done building completely fix it*/}
           {userData.is_teacher ? <DashboardTeacher /> : <DashboardTeacher />}
         </Grid>
-      </Grid>
 
-      {/* Change password dropdown */}
-      <Accordion
-        sx={{
-          position: "fixed",
-          bottom: 16,
-          right: 16,
-        }}
-      >
-        <AccordionSummary
-          sx={{
-            background: "#F6E9E9",
-          }}
-          expandIcon={<ExpandMoreIcon sx={{ color: "grey" }} />}
-        >
-          <Typography variant="h6" sx={{ pl: 3, color: "grey" }}>
-            Change password
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails
-          sx={{
-            background: "#F6E9E9",
-            padding: 4,
-          }}
-        >
-          <ChangePassword />
-        </AccordionDetails>
-      </Accordion>
+        <Grid item xs={12}>
+          <Accordion
+            sx={{
+              position: "relative",
+              margin: 6,
+            }}
+          >
+            <AccordionSummary
+              sx={{
+                background: "#F6E9E9",
+              }}
+              expandIcon={<ExpandMoreIcon sx={{ color: "grey" }} />}
+            >
+              <Typography variant="h6" sx={{ pl: 3, color: "grey" }}>
+                Change password
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails
+              sx={{
+                background: "#F6E9E9",
+                padding: 6,
+              }}
+            >
+              <ChangePassword />
+            </AccordionDetails>
+          </Accordion>
+        </Grid>
+      </Grid>
     </>
   );
 };
