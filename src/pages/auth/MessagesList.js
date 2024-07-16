@@ -1,30 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useGetMessageQuery } from "../../services/messagesApi";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getCurrentToken } from "../../features/authSlice";
-import {
-  List,
-  ListItem,
-  ListItemText,
-  CircularProgress,
-  Typography,
-  Box,
-  IconButton,
-  Paper,
-  Pagination,
-  Grid,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
+import { List, ListItem, ListItemText, CircularProgress, Typography, Box, IconButton, Paper, Pagination, Grid, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const MessagesList = () => {
   const access_token = useSelector(getCurrentToken);
-  const {
-    data: MessagesData,
-    isLoading: LoadingMessages,
-    refetch,
-  } = useGetMessageQuery(access_token);
+  const { data: MessagesData, isLoading: LoadingMessages, refetch } = useGetMessageQuery(access_token);
 
   const [page, setPage] = useState(1);
   const messagesPerPage = 3;
@@ -41,8 +24,7 @@ const MessagesList = () => {
   const startIndex = (page - 1) * messagesPerPage;
   const endIndex = startIndex + messagesPerPage;
 
-  const displayedMessages =
-    MessagesData?.data.slice(startIndex, endIndex) || [];
+  const displayedMessages = MessagesData?.data.slice(startIndex, endIndex) || [];
 
   const handleRefresh = () => {
     refetch();
@@ -73,74 +55,53 @@ const MessagesList = () => {
   };
 
   return (
-    <Grid item xs={12} md={12} boxShadow={6} borderRadius={6}>
-      <div style={{ padding: "16px" }}>
-        <Typography variant="h3" color="textSecondary">
+    <Grid item xs={12} md={12} sx={{ boxShadow: 6, borderRadius: 2 }}>
+      <Box sx={{ p: 3 }}>
+        <Typography variant="h4" color="textPrimary" gutterBottom>
           Messages
         </Typography>
-        <Box mt={4} mx="auto" width="80%">
+        <Box sx={{ mt: 2, mb: 3 }}>
           <ToggleButtonGroup exclusive>
-            <ToggleButton
-              value="refreshing"
-              selected={refreshing}
-              onClick={toggleRefresh}
-            >
+            <ToggleButton value="refreshing" selected={refreshing} onClick={toggleRefresh}>
               Refreshing: {refreshing ? "On" : "Off"}
             </ToggleButton>
           </ToggleButtonGroup>
-          {LoadingMessages ? (
-            <CircularProgress />
-          ) : (
-            <div>
-              <List>
-                {displayedMessages.map((message) => (
-                  <Paper elevation={3} sx={{ p: 2, mb: 2 }} key={message.id}>
-                    <ListItem alignItems="flex-start">
-                      <ListItemText
-                        primary={"Name: " + message.name}
-                        secondary={
-                          <>
-                            <Typography
-                              variant="body2"
-                              color="text.primary"
-                              component="div"
-                            >
-                              {"Email: " + message.email}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              {"Message: " + message.message}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Created At: {message.created_at}
-                            </Typography>
-                          </>
-                        }
-                      />
-                      <IconButton
-                        edge="end"
-                        aria-label="delete"
-                        onClick={() => handleDelete(message.id)}
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItem>
-                  </Paper>
-                ))}
-              </List>
-              <Box mt={2} display="flex" justifyContent="center">
-                <Pagination
-                  count={Math.ceil(
-                    (MessagesData?.data.length || 0) / messagesPerPage
-                  )}
-                  page={page}
-                  onChange={handlePageChange}
-                  color="primary"
-                />
-              </Box>
-            </div>
-          )}
         </Box>
-      </div>
+        {LoadingMessages ? (
+          <CircularProgress />
+        ) : (
+          <List>
+            {displayedMessages.map((message) => (
+              <Paper key={message.id} elevation={3} sx={{ p: 2, mb: 2 }}>
+                <ListItem alignItems="flex-start">
+                  <ListItemText
+                    primary={<Typography variant="h6">Name: {message.name}</Typography>}
+                    secondary={
+                      <>
+                        <Typography variant="body1" color="textPrimary">
+                          Email: {message.email}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Message: {message.message}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Created At: {message.created_at}
+                        </Typography>
+                      </>
+                    }
+                  />
+                  <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(message.id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </ListItem>
+              </Paper>
+            ))}
+          </List>
+        )}
+        <Box mt={2} display="flex" justifyContent="center">
+          <Pagination count={Math.ceil((MessagesData?.data.length || 0) / messagesPerPage)} page={page} onChange={handlePageChange} color="primary" />
+        </Box>
+      </Box>
     </Grid>
   );
 };

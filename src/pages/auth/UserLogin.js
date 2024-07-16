@@ -1,28 +1,18 @@
-import {
-  TextField,
-  Button,
-  Box,
-  Alert,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { TextField, Button, Box, Alert, Typography, CircularProgress, InputAdornment, IconButton } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { setCredentials, logOut } from "../../features/authSlice";
-import { userSlice } from "../../features/userSlice";
+import { setCredentials } from "../../features/authSlice";
 import { getToken, storeToken } from "../../services/LocalStorageService";
 import { useLoginUserMutation } from "../../services/UserAuthApi";
-import { getCurrentToken } from "../../features/authSlice";
 import { toast } from "react-toastify";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const UserLogin = () => {
-  const [server_error, setServerError] = useState({});
-
+  const [serverError, setServerError] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
   const [loginUser, { isLoading }] = useLoginUserMutation();
-
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -33,88 +23,85 @@ const UserLogin = () => {
       password: data.get("password"),
     };
 
-    const res = await loginUser(actualData);
-    if (res.error) {
-      setServerError(res.error.data);
-    }
-    if (res.data) {
-      console.log(res.data);
-      storeToken(res.data.token);
-      //let {access_token} = getToken()
-      toast("Logged In");
-      dispatch(setCredentials({ ...res.data.token }));
-      navigate("/dashboard");
+    try {
+      const res = await loginUser(actualData);
+      if (res.error) {
+        setServerError(res.error.data);
+      }
+      if (res.data) {
+        storeToken(res.data.token);
+        toast.success("Logged In Successfully");
+        dispatch(setCredentials({ ...res.data.token }));
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("An error occurred during login");
     }
   };
-  let { access_token, refresh_token } = getToken();
+
   useEffect(() => {
-    dispatch(setCredentials({ access: access_token, refresh: refresh_token }));
-  }, [access_token, dispatch]);
+    const { access_token, refresh_token } = getToken();
+    if (access_token && refresh_token) {
+      dispatch(setCredentials({ access: access_token, refresh: refresh_token }));
+    }
+  }, [dispatch]);
 
   return (
-    <>
-      <Box
-        component="form"
-        noValidate
-        sx={{ mt: 1 }}
-        id="login-form"
-        onSubmit={handleSubmit}
-      >
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          name="email"
-          label="Email Address"
-        />
-        {server_error.email ? (
-          <Typography style={{ fontSize: 12, color: "red", paddingLeft: "10" }}>
-            {server_error.email[0]}
-          </Typography>
-        ) : (
-          ""
-        )}
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-        />
-        {server_error.password ? (
-          <Typography style={{ fontSize: 12, color: "red", paddingLeft: "10" }}>
-            {server_error.password[0]}
-          </Typography>
-        ) : (
-          ""
-        )}
-        <Box textAlign="center">
-          {isLoading ? (
-            <CircularProgress />
-          ) : (
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{ mt: 3, mb: 2, px: 5 }}
-            >
-              Login
-            </Button>
-          )}
-        </Box>
-        <NavLink to="/sendpasswordresetemail">Forgot Password?</NavLink>
-
-        {server_error.errors ? (
-          <Alert severity="error">
-            {server_error.errors.non_field_errors[0]}
-          </Alert>
-        ) : (
-          ""
-        )}
+    <Box
+      component="form"
+      noValidate
+      onSubmit={handleSubmit}
+      sx={{
+        mt: 2,
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+      }}
+    >
+      <TextField required fullWidth id="email" name="email" label="Email Address" autoComplete="email" error={!!serverError.email} helperText={serverError.email?.[0]} />
+      <TextField
+        required
+        fullWidth
+        id="password"
+        name="password"
+        label="Password"
+        type={showPassword ? "text" : "password"}
+        autoComplete="current-password"
+        error={!!serverError.password}
+        helperText={serverError.password?.[0]}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton aria-label="toggle password visibility" onClick={() => setShowPassword(!showPassword)} edge="end">
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <NavLink to="/sendpasswordresetemail" style={{ textDecoration: "none", color: "primary.main" }}>
+          Forgot Password?
+        </NavLink>
+        <Button
+          type="submit"
+          variant="contained"
+          disabled={isLoading}
+          sx={{
+            minWidth: "120px",
+            height: "40px",
+          }}
+        >
+          {isLoading ? <CircularProgress size={24} /> : "Login"}
+        </Button>
       </Box>
-    </>
+      {serverError.errors && (
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {serverError.errors.non_field_errors?.[0]}
+        </Alert>
+      )}
+    </Box>
   );
 };
 
