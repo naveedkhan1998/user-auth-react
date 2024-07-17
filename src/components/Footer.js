@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Link } from "@mui/material";
 
 const Footer = () => {
   return (
@@ -12,13 +12,26 @@ const Footer = () => {
         padding: "1rem",
         textAlign: "center",
         width: "100%",
+        boxShadow: "0 -2px 5px rgba(0, 0, 0, 0.2)",
       }}
     >
       <Typography variant="body2">
         &copy; {new Date().getFullYear()} Mohammad Naveed Khan{" "}
-        <a href="https://www.linkedin.com/in/mohammad-naveed-khan-956b10198/">
-          (Link)
-        </a>
+        <Link
+          href="https://www.linkedin.com/in/mohammad-naveed-khan-956b10198/"
+          target="_blank"
+          rel="noopener"
+          sx={{
+            color: "#F6E9E9",
+            textDecoration: "none",
+            "&:hover": {
+              textDecoration: "underline",
+              color: "#ffffff",
+            },
+          }}
+        >
+          (LinkedIn)
+        </Link>
       </Typography>
     </Box>
   );

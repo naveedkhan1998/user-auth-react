@@ -48,59 +48,58 @@ const MessagesList = () => {
 
   const toggleRefresh = () => {
     if (!refreshing) {
-      // Start refreshing for 5 seconds
       setRefreshing(true);
       setTimeout(() => setRefreshing(false), 5000);
     }
   };
 
   return (
-    <Grid item xs={12} md={12} sx={{ boxShadow: 6, borderRadius: 2 }}>
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h4" color="textPrimary" gutterBottom>
-          Messages
-        </Typography>
-        <Box sx={{ mt: 2, mb: 3 }}>
-          <ToggleButtonGroup exclusive>
-            <ToggleButton value="refreshing" selected={refreshing} onClick={toggleRefresh}>
-              Refreshing: {refreshing ? "On" : "Off"}
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
-        {LoadingMessages ? (
+    <Grid item xs={12} md={12} sx={{ boxShadow: 6, borderRadius: 2, p: 3 }}>
+      <Typography variant="h4" color="textPrimary" gutterBottom>
+        Messages
+      </Typography>
+      <Box sx={{ mt: 2, mb: 3, display: "flex", justifyContent: "center" }}>
+        <ToggleButtonGroup exclusive>
+          <ToggleButton value="refreshing" selected={refreshing} onClick={toggleRefresh}>
+            Refreshing: {refreshing ? "On" : "Off"}
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+      {LoadingMessages ? (
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "50vh" }}>
           <CircularProgress />
-        ) : (
-          <List>
-            {displayedMessages.map((message) => (
-              <Paper key={message.id} elevation={3} sx={{ p: 2, mb: 2 }}>
-                <ListItem alignItems="flex-start">
-                  <ListItemText
-                    primary={<Typography variant="h6">Name: {message.name}</Typography>}
-                    secondary={
-                      <>
-                        <Typography variant="body1" color="textPrimary">
-                          Email: {message.email}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                          Message: {message.message}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                          Created At: {message.created_at}
-                        </Typography>
-                      </>
-                    }
-                  />
-                  <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(message.id)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItem>
-              </Paper>
-            ))}
-          </List>
-        )}
-        <Box mt={2} display="flex" justifyContent="center">
-          <Pagination count={Math.ceil((MessagesData?.data.length || 0) / messagesPerPage)} page={page} onChange={handlePageChange} color="primary" />
         </Box>
+      ) : (
+        <List>
+          {displayedMessages.map((message) => (
+            <Paper key={message.id} elevation={3} sx={{ p: 2, mb: 2 }}>
+              <ListItem alignItems="flex-start">
+                <ListItemText
+                  primary={<Typography variant="h6">Name: {message.name}</Typography>}
+                  secondary={
+                    <>
+                      <Typography variant="body1" color="textPrimary">
+                        Email: {message.email}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        Message: {message.message}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        Created At: {message.created_at}
+                      </Typography>
+                    </>
+                  }
+                />
+                <IconButton edge="end" aria-label="delete" onClick={() => handleDelete(message.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              </ListItem>
+            </Paper>
+          ))}
+        </List>
+      )}
+      <Box mt={2} display="flex" justifyContent="center">
+        <Pagination count={Math.ceil((MessagesData?.data.length || 0) / messagesPerPage)} page={page} onChange={handlePageChange} color="primary" />
       </Box>
     </Grid>
   );

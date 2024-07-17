@@ -21,8 +21,8 @@ const StandardsList = () => {
   }, [isSuccess, data, isError, dispatch]);
 
   return (
-    <Paper elevation={3} sx={{ borderRadius: 6, p: 3, height: "100%" }}>
-      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2, color: "grey" }}>
+    <Paper elevation={3} sx={{ borderRadius: 4, p: 4, height: "100%" }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 3, color: "#333" }}>
         Standards
       </Typography>
       {isLoading ? (
@@ -33,14 +33,19 @@ const StandardsList = () => {
         <Grid container spacing={3}>
           {storeStandards?.map((item) => (
             <Grid item key={item.id} xs={12} sm={6} md={4}>
-              <Paper elevation={3} sx={{ borderRadius: 6, p: 2 }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1, color: "grey" }}>
+              <Paper elevation={3} sx={{ borderRadius: 4, p: 2, background: "#f5f5f5" }}>
+                <Typography variant="subtitle1" sx={{ fontWeight: "bold", mb: 1, color: "#333" }}>
                   Standard: {item.standard}
                 </Typography>
-                <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 1, color: "grey" }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 1, color: item.is_in_session ? "green" : "red" }}>
                   In Session: {item.is_in_session ? "🟢" : "🔴"}
                 </Typography>
-                <Button variant="outlined" fullWidth sx={{ borderRadius: 3, mt: 1 }} onClick={() => navigate(`/standard/${item.id}`)}>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  sx={{ borderRadius: 3, mt: 1, color: "#2196F3", borderColor: "#2196F3", "&:hover": { backgroundColor: "#e3f2fd" } }}
+                  onClick={() => navigate(`/standard/${item.id}`)}
+                >
                   View
                 </Button>
               </Paper>

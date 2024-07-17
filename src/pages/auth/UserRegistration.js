@@ -7,7 +7,7 @@ import { useRegisterUserMutation, useSendOTPMutation } from "../../services/User
 import { setCredentials } from "../../features/authSlice";
 import { toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff, Email, Person, VpnKey, ConfirmationNumber } from "@mui/icons-material";
 
 const UserRegistration = () => {
   const dispatch = useDispatch();
@@ -77,7 +77,7 @@ const UserRegistration = () => {
 
   return (
     <Box sx={{ width: "100%", mt: 2 }}>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <Stepper activeStep={activeStep} alternativeLabel sx={{ mb: 4 }}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -86,18 +86,91 @@ const UserRegistration = () => {
       </Stepper>
 
       {activeStep === 0 ? (
-        <Box component="form" noValidate onSubmit={handleOTP} sx={{ mt: 3 }}>
-          <TextField required fullWidth id="email_otp" name="email_otp" label="Email Address" autoComplete="email" error={!!serverError.email} helperText={serverError.email?.[0]} sx={{ mb: 2 }} />
+        <Box component="form" noValidate onSubmit={handleOTP} sx={{ mt: 3, display: "flex", flexDirection: "column", gap: 3 }}>
+          <TextField
+            required
+            fullWidth
+            id="email_otp"
+            name="email_otp"
+            label="Email Address"
+            autoComplete="email"
+            error={!!serverError.email}
+            helperText={serverError.email?.[0]}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Email color="action" />
+                </InputAdornment>
+              ),
+            }}
+          />
           <ReCAPTCHA sitekey="6LcAAtooAAAAACEKM0Tr8tEldIIONanUrvB0bhHQ" onChange={handleCaptchaChange} />
-          <Button type="submit" fullWidth variant="contained" disabled={LoadingSendOTP || !isCaptchaSolved} sx={{ mt: 3, mb: 2 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            disabled={LoadingSendOTP || !isCaptchaSolved}
+            sx={{
+              mt: 2,
+              height: "40px",
+              borderRadius: "20px",
+            }}
+          >
             {LoadingSendOTP ? <CircularProgress size={24} /> : "Generate OTP"}
           </Button>
         </Box>
       ) : (
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <TextField required fullWidth id="email" name="email" label="Email Address" autoComplete="email" error={!!serverError.email} helperText={serverError.email?.[0]} sx={{ mb: 2 }} />
-          <TextField required fullWidth id="name" name="name" label="Full Name" autoComplete="name" error={!!serverError.name} helperText={serverError.name?.[0]} sx={{ mb: 2 }} />
-          <TextField required fullWidth id="otp" name="otp" label="OTP" error={!!serverError.otp} helperText={serverError.otp?.[0]} sx={{ mb: 2 }} />
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, display: "flex", flexDirection: "column", gap: 3 }}>
+          <TextField
+            required
+            fullWidth
+            id="email"
+            name="email"
+            label="Email Address"
+            autoComplete="email"
+            error={!!serverError.email}
+            helperText={serverError.email?.[0]}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Email color="action" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            required
+            fullWidth
+            id="name"
+            name="name"
+            label="Full Name"
+            autoComplete="name"
+            error={!!serverError.name}
+            helperText={serverError.name?.[0]}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Person color="action" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            required
+            fullWidth
+            id="otp"
+            name="otp"
+            label="OTP"
+            error={!!serverError.otp}
+            helperText={serverError.otp?.[0]}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <ConfirmationNumber color="action" />
+                </InputAdornment>
+              ),
+            }}
+          />
           <TextField
             required
             fullWidth
@@ -107,8 +180,12 @@ const UserRegistration = () => {
             type={showPassword ? "text" : "password"}
             error={!!serverError.password}
             helperText={serverError.password?.[0]}
-            sx={{ mb: 2 }}
             InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <VpnKey color="action" />
+                </InputAdornment>
+              ),
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton aria-label="toggle password visibility" onClick={() => setShowPassword(!showPassword)} edge="end">
@@ -127,8 +204,12 @@ const UserRegistration = () => {
             type={showConfirmPassword ? "text" : "password"}
             error={!!serverError.password2}
             helperText={serverError.password2?.[0]}
-            sx={{ mb: 2 }}
             InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <VpnKey color="action" />
+                </InputAdornment>
+              ),
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton aria-label="toggle password visibility" onClick={() => setShowConfirmPassword(!showConfirmPassword)} edge="end">
@@ -140,11 +221,21 @@ const UserRegistration = () => {
           />
           <FormControlLabel control={<Checkbox value={true} color="primary" name="tc" id="tc" />} label="I agree to the Terms and Conditions" />
           {serverError.tc && (
-            <Typography color="error" variant="caption" display="block" sx={{ mt: 1 }}>
+            <Typography color="error" variant="caption" display="block">
               {serverError.tc[0]}
             </Typography>
           )}
-          <Button type="submit" fullWidth variant="contained" disabled={LoadingRegisterUser} sx={{ mt: 3, mb: 2 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            disabled={LoadingRegisterUser}
+            sx={{
+              mt: 2,
+              height: "40px",
+              borderRadius: "20px",
+            }}
+          >
             {LoadingRegisterUser ? <CircularProgress size={24} /> : "Register"}
           </Button>
         </Box>

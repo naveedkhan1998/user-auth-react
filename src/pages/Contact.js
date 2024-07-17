@@ -54,11 +54,11 @@ const Contact = () => {
     <Container maxWidth="lg">
       <Grid container spacing={4} justifyContent="center" sx={{ py: 5 }}>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 4, height: "100%" }}>
-            <Typography variant="h4" gutterBottom>
+          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "#fff", borderRadius: 2 }}>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#333" }}>
               Contact Us
             </Typography>
-            <Typography variant="body1" paragraph>
+            <Typography variant="body1" paragraph sx={{ color: "#555" }}>
               Have a question or comment? Send us a message, and we'll get back to you as soon as possible.
             </Typography>
             <Box component="form" onSubmit={handleSubmit} noValidate>
@@ -68,18 +68,25 @@ const Contact = () => {
               <Box sx={{ my: 2 }}>
                 <ReCAPTCHA sitekey="6LcAAtooAAAAACEKM0Tr8tEldIIONanUrvB0bhHQ" onChange={handleCaptchaChange} />
               </Box>
-              <Button type="submit" fullWidth variant="contained" endIcon={<SendIcon />} disabled={isLoading || !isCaptchaSolved}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                endIcon={<SendIcon />}
+                disabled={isLoading || !isCaptchaSolved}
+                sx={{ backgroundColor: "#2196F3", "&:hover": { backgroundColor: "#1976D2" } }}
+              >
                 {isLoading ? <CircularProgress size={24} /> : "Send Message"}
               </Button>
             </Box>
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 4, height: "100%" }}>
-            <Typography variant="h4" gutterBottom>
+          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "#fff", borderRadius: 2 }}>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#333" }}>
               Get In Touch
             </Typography>
-            <Typography variant="body1" paragraph>
+            <Typography variant="body1" paragraph sx={{ color: "#555" }}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor quam nec felis gravida, a malesuada urna tincidunt.
             </Typography>
             <Box sx={{ mt: 4 }}>
@@ -102,7 +109,9 @@ const Contact = () => {
 const ContactInfoItem = ({ icon, text }) => (
   <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
     <Box sx={{ mr: 2, color: "primary.main" }}>{icon}</Box>
-    <Typography variant="body1">{text}</Typography>
+    <Typography variant="body1" sx={{ color: "#555" }}>
+      {text}
+    </Typography>
   </Box>
 );
 

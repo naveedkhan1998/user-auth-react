@@ -1,7 +1,9 @@
-// src/components/UserMenu.js
 import React from "react";
-import { Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem, ListItemIcon, ListItemText, Divider } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const UserMenu = ({ anchorElUser, handleMenuCloseUser, access_token, handleLogout }) => {
   return (
@@ -23,20 +25,30 @@ const UserMenu = ({ anchorElUser, handleMenuCloseUser, access_token, handleLogou
     >
       {!access_token ? (
         <MenuItem component={NavLink} to="/login" onClick={handleMenuCloseUser}>
-          Login/Register
+          <ListItemIcon>
+            <LoginIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Login/Register" />
         </MenuItem>
       ) : (
         <>
           <MenuItem component={NavLink} to="/dashboard" onClick={handleMenuCloseUser}>
-            Dashboard
+            <ListItemIcon>
+              <DashboardIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
           </MenuItem>
+          <Divider />
           <MenuItem
             onClick={() => {
               handleLogout();
               handleMenuCloseUser();
             }}
           >
-            Logout
+            <ListItemIcon>
+              <LogoutIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
           </MenuItem>
         </>
       )}

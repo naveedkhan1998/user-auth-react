@@ -6,7 +6,7 @@ import { setCredentials } from "../../features/authSlice";
 import { getToken, storeToken } from "../../services/LocalStorageService";
 import { useLoginUserMutation } from "../../services/UserAuthApi";
 import { toast } from "react-toastify";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff, Email, Lock } from "@mui/icons-material";
 
 const UserLogin = () => {
   const [serverError, setServerError] = useState({});
@@ -56,10 +56,26 @@ const UserLogin = () => {
         mt: 2,
         display: "flex",
         flexDirection: "column",
-        gap: 2,
+        gap: 3,
       }}
     >
-      <TextField required fullWidth id="email" name="email" label="Email Address" autoComplete="email" error={!!serverError.email} helperText={serverError.email?.[0]} />
+      <TextField
+        required
+        fullWidth
+        id="email"
+        name="email"
+        label="Email Address"
+        autoComplete="email"
+        error={!!serverError.email}
+        helperText={serverError.email?.[0]}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Email color="action" />
+            </InputAdornment>
+          ),
+        }}
+      />
       <TextField
         required
         fullWidth
@@ -71,6 +87,11 @@ const UserLogin = () => {
         error={!!serverError.password}
         helperText={serverError.password?.[0]}
         InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Lock color="action" />
+            </InputAdornment>
+          ),
           endAdornment: (
             <InputAdornment position="end">
               <IconButton aria-label="toggle password visibility" onClick={() => setShowPassword(!showPassword)} edge="end">
@@ -91,6 +112,7 @@ const UserLogin = () => {
           sx={{
             minWidth: "120px",
             height: "40px",
+            borderRadius: "20px",
           }}
         >
           {isLoading ? <CircularProgress size={24} /> : "Login"}
