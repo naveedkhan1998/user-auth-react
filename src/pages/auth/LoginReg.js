@@ -123,12 +123,12 @@ const LoginReg = () => {
                   <UserRegistration />
                 </TabPanel>
 
-                <Box sx={{ mt: 3, textAlign: "center" }}>
+                {/* <Box sx={{ mt: 3, textAlign: "center" }}>
                   <Typography variant="body2" sx={{ mb: 2 }}>
                     Or continue with
                   </Typography>
                   <GoogleLoginButton />
-                </Box>
+                </Box> */}
               </Box>
             </Grid>
           </Grid>
