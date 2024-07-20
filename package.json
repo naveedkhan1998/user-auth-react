@@ -10,6 +10,7 @@
     "@mui/material": "^5.15.10",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.1",
+    "axios": "^1.7.2",
     "framer-motion": "^11.0.6",
     "mui-one-time-password-input": "^2.0.2",
     "react": "^18.2.0",

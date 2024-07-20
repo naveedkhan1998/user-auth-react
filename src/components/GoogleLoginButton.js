@@ -2,24 +2,42 @@ import React from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { Box, Typography } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
+import axios from "axios";
+import { API_BASE_URL } from "../services/baseApi";
+import { useNavigate } from "react-router-dom";
+import { storeToken } from "../services/LocalStorageService";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../features/authSlice";
 
 const GoogleLoginButton = () => {
-  const handleLoginSuccess = (response) => {
-    // Handle successful login, e.g., send the token to your backend for verification
-    console.log("Google Login Successful", response);
-  };
-
-  const handleLoginFailure = (error) => {
-    // Handle login failure
-    console.error("Google Login Failed", error);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const responseGoogle = (response) => {
+    console.log(response);
+    axios
+      .post(`${API_BASE_URL}/accounts/login/`, {
+        access_token: response.tokenId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        storeToken(res.data.token);
+        toast.success("Logged In Successfully");
+        dispatch(setCredentials({ ...res.data.token }));
+        navigate("/dashboard");
+        // You can redirect the user or do other actions
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <Box sx={{ width: "100%", mt: 2 }}>
       <GoogleLogin
         clientId="784896158603-23kjm5iiii1vhl2n9rpd417cq42b2hnk.apps.googleusercontent.com"
-        onSuccess={handleLoginSuccess}
-        onFailure={handleLoginFailure}
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
         render={({ onClick, disabled }) => (
           <Box
             onClick={onClick}
