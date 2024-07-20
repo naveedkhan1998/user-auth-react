@@ -11,7 +11,7 @@ const Home = () => {
     <Container maxWidth="lg">
       <Grid container spacing={4} justifyContent="center" sx={{ py: 5 }}>
         <Grid item xs={12} md={8}>
-          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "#fff", borderRadius: 2 }}>
+          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)", borderRadius: 2 }}>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#333" }}>
               A Django-React app with JWT-based authentication and powerful CRUD operations
             </Typography>
@@ -40,7 +40,7 @@ const Home = () => {
           </Paper>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "#fff", borderRadius: 2 }}>
+          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)", borderRadius: 2 }}>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#333" }}>
               Key Features
             </Typography>

@@ -7,6 +7,9 @@ export const userAuthApi = baseApi.injectEndpoints({
         url: "/api/user/login/",
         method: "POST",
         body: { ...credentials },
+        headers: {
+          "Content-type": "application/json",
+        },
       }),
     }),
     registerUser: builder.mutation({
@@ -40,6 +43,7 @@ export const userAuthApi = baseApi.injectEndpoints({
           body: actualData,
           headers: {
             Authorization: `Bearer ${access_token}`,
+            "Content-type": "application/json",
           },
         };
       },
@@ -83,12 +87,5 @@ export const userAuthApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {
-  useRegisterUserMutation,
-  useLoginUserMutation,
-  useGetLoggedUserQuery,
-  useChangeUserPasswordMutation,
-  useSendPasswordResetEmailMutation,
-  useResetPasswordMutation,
-  useSendOTPMutation,
-} = userAuthApi;
+export const { useRegisterUserMutation, useLoginUserMutation, useGetLoggedUserQuery, useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useSendOTPMutation } =
+  userAuthApi;

@@ -54,7 +54,7 @@ const Contact = () => {
     <Container maxWidth="lg">
       <Grid container spacing={4} justifyContent="center" sx={{ py: 5 }}>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "#fff", borderRadius: 2 }}>
+          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)", borderRadius: 2 }}>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#333" }}>
               Contact Us
             </Typography>
@@ -82,17 +82,17 @@ const Contact = () => {
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "#fff", borderRadius: 2 }}>
+          <Paper elevation={3} sx={{ p: 4, height: "100%", background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)", borderRadius: 2 }}>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#333" }}>
               Get In Touch
             </Typography>
             <Typography variant="body1" paragraph sx={{ color: "#555" }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor quam nec felis gravida, a malesuada urna tincidunt.
+              Feel free to contact me using any of the details provided below.
             </Typography>
             <Box sx={{ mt: 4 }}>
-              <ContactInfoItem icon={<PhoneIcon />} text="+1 1234567890" />
-              <ContactInfoItem icon={<EmailIcon />} text="info@example.com" />
-              <ContactInfoItem icon={<LocationOnIcon />} text="House No.1, New York, USA" />
+              <ContactInfoItem icon={<PhoneIcon />} text="+1 226-236-7245" />
+              <ContactInfoItem icon={<EmailIcon />} text="nkhan364@uwo.ca" />
+              <ContactInfoItem icon={<LocationOnIcon />} text="London, Ontario, Canada" />
             </Box>
           </Paper>
         </Grid>

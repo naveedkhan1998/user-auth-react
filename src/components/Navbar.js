@@ -95,11 +95,17 @@ const Navbar = () => {
               <Button
                 component={NavLink}
                 to="/login"
-                variant="outlined"
+                variant="contained"
                 sx={{
                   color: "white",
                   borderColor: "white",
                   "&:hover": {
+                    borderColor: "white",
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  },
+                  "&.active": {
+                    color: "#00C8FF", // Custom active color
+                    fontWeight: "bold",
                     borderColor: "white",
                     backgroundColor: "rgba(255, 255, 255, 0.1)",
                   },

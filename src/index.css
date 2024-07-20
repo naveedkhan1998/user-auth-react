@@ -1,11 +1,95 @@
-.app-container {
-  background-color: #344c63;
-  font-family: "League Spartan", sans-serif;
-  height: auto;
-  min-height: 100dvh;
+/* Variables for easy customization */
+:root {
+  --gradient-start: #c3cfe2;
+  --gradient-end: #f5f7fa;
+  --scrollbar-width: 12px;
+  --max-container-width: 1200px;
+  --main-font: "League Spartan", sans-serif;
 }
 
+/* Reset and base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--main-font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* App Container Styling */
+.app-container {
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  min-height: 100vh; /* Use vh instead of dvh for better browser support */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Main Container Styling */
 .main-container {
-  padding-bottom: 5%;
-  padding-top: 5%;
+  padding: 5% 0;
+  width: 100%;
+  max-width: var(--max-container-width);
+  margin: 0 auto;
+}
+
+/* Custom Scrollbar Styling */
+/* Webkit browsers */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gradient-end);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-start);
+  border-radius: calc(var(--scrollbar-width) / 2);
+  border: 3px solid var(--gradient-end);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffd3b6;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gradient-start) var(--gradient-end);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 10% 5%; /* Added horizontal padding */
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .app-container {
+    background: none;
+  }
+
+  .main-container {
+    max-width: 100%;
+  }
 }

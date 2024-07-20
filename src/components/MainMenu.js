@@ -20,13 +20,16 @@ const MainMenu = ({ isMobile }) => {
           component={NavLink}
           to={item.path}
           sx={{
-            color: "primary.main",
+            color: "white",
             "&.active": {
-              color: "secondary.main",
+              color: "#00C8FF", // Custom active color
               fontWeight: "bold",
             },
             "&:hover": {
-              backgroundColor: "rgba(106, 27, 154, 0.1)",
+              backgroundColor: "#0000002F", // Light red hover background
+            },
+            "&.active:hover": {
+              backgroundColor: "#0000002F", // Darker red hover background for active item
             },
           }}
         >
@@ -41,12 +44,16 @@ const MainMenu = ({ isMobile }) => {
           sx={{
             color: "white",
             mx: 1,
+
             "&.active": {
-              color: "secondary.main",
+              color: "#00C8FF", // Custom active color
               fontWeight: "bold",
             },
             "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              backgroundColor: "#0000002F", // Light blue hover background
+            },
+            "&.active:hover": {
+              backgroundColor: "#0000002F", // Darker blue hover background for active button
             },
           }}
           startIcon={item.icon}
