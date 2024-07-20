@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logOut } from "../features/authSlice";
 import { getToken, storeToken, removeToken } from "./LocalStorageService";
 
-const API_BASE_URL = "https://naveedkhan98.pythonanywhere.com";
+export const API_BASE_URL = "https://naveedkhan98.pythonanywhere.com";
 //export const API_BASE_URL = "http://localhost:8000";
 
 const baseQuery = fetchBaseQuery({
